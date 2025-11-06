@@ -1,0 +1,4075 @@
+{
+  "name": "Movie Analyzer AI",
+  "nodes": [
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -704,
+        224
+      ],
+      "id": "817faa9b-f5e3-4962-9f9b-896a92e204f5",
+      "name": "Merge",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const data = item.json.results || [];\n  return data.map(entry => ({\n    json: {\n      id: entry.id,\n      title: entry.title || entry.name,\n      release_date: entry.release_date || entry.first_air_date,\n      overview: entry.overview,\n      rating: entry.vote_average,\n      popularity: entry.popularity,\n      genre_ids: entry.genre_ids,\n      poster_url: entry.poster_path \n        ? `https://image.tmdb.org/t/p/w500${entry.poster_path}`\n        : '',\n      type: entry.title ? 'Movie' : 'Series'\n    }\n  }));\n}).flat();\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -464,
+        176
+      ],
+      "id": "fab739f1-49b2-4ddb-a260-7f5f408891e9",
+      "name": "Clean and Format Data",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1u12ZADocYdH5f7mks0G4wMrHsSD8uUSrNA5KJuEISOs",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1u12ZADocYdH5f7mks0G4wMrHsSD8uUSrNA5KJuEISOs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Movies_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1u12ZADocYdH5f7mks0G4wMrHsSD8uUSrNA5KJuEISOs/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id }}",
+            "Title": "={{ $json.title }}",
+            "Release Date": "={{ $json.release_date }}",
+            "Rating ": "={{ $json.rating }}",
+            "Type ": "={{ $json.type }}",
+            "Overview": "={{ $json.overview }}",
+            "Poster URL": "={{ $json.poster_url }}",
+            "Popularity": "={{ $json.popularity }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Review",
+              "displayName": "Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": false
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -80,
+        448
+      ],
+      "id": "1d4640b9-86d9-486a-89ec-cbc54aa0e178",
+      "name": "Save to Database",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "daysInterval": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -880,
+        816
+      ],
+      "id": "fa17495d-2d2c-476f-8f78-99b132a54dc6",
+      "name": "Phase 2 - Initiator"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1u12ZADocYdH5f7mks0G4wMrHsSD8uUSrNA5KJuEISOs",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1u12ZADocYdH5f7mks0G4wMrHsSD8uUSrNA5KJuEISOs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Movies_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1u12ZADocYdH5f7mks0G4wMrHsSD8uUSrNA5KJuEISOs/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Reviwed?"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -704,
+        816
+      ],
+      "id": "9e83ae77-b1c7-4777-81cf-824b5aea0a04",
+      "name": "Read Movie Data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -320,
+        816
+      ],
+      "id": "1c0b6d7e-4809-4e0c-b51a-45068eba1a41",
+      "name": "Splot in Batches"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae1ec5eb-f62d-4508-a5ba-4c41c3e2f078",
+              "name": "id",
+              "value": "={{ $('Read Movie Data').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "6e418712-7c3c-4514-9860-cea729edb59f",
+              "name": "review",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        832
+      ],
+      "id": "35138b00-87e7-4bf4-98e9-f7783cac1b47",
+      "name": "Format Review Output"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1u12ZADocYdH5f7mks0G4wMrHsSD8uUSrNA5KJuEISOs",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1u12ZADocYdH5f7mks0G4wMrHsSD8uUSrNA5KJuEISOs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Movies_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1u12ZADocYdH5f7mks0G4wMrHsSD8uUSrNA5KJuEISOs/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Reviwed?": "Yes",
+            "Review": "={{ $json.review }}",
+            "id": "={{ $json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Review",
+              "displayName": "Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        832
+      ],
+      "id": "d43af92f-5b7d-4116-a164-efe1a289e5ee",
+      "name": "Update Movie Review",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        704
+      ],
+      "id": "93c5b736-ece7-4aac-b7e4-0b833e37ff5c",
+      "name": "No Operation"
+    },
+    {
+      "parameters": {
+        "maxItems": 2
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -544,
+        816
+      ],
+      "id": "5ad4a1ee-549b-4fe9-9667-9cbcc743d53e",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "url": "https://api.themoviedb.org/3/movie/popular",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "language",
+              "value": "en-US"
+            },
+            {
+              "name": "page",
+              "value": "={{ $json.page }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMTcyYzIzYjU2MmJjY2YzYzNhYzI0OTRmZDJmODU1NCIsIm5iZiI6MTc2MjI2NjQxOS42NTIsInN1YiI6IjY5MGEwZDMzYWNiMmJjMzBmMDcwY2M0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I5TEpU04udXCe4MP2dJK6fxM6S-nvUmKhYyeOeMK-ZM"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        32,
+        -480
+      ],
+      "id": "a02c38a2-3ea3-445f-86c7-b9a30f7777d4",
+      "name": "Fetch Popular Movies"
+    },
+    {
+      "parameters": {
+        "url": "https://api.themoviedb.org/3/movie/upcoming",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "language",
+              "value": "en-US"
+            },
+            {
+              "name": "page",
+              "value": "={{ $json.page }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMTcyYzIzYjU2MmJjY2YzYzNhYzI0OTRmZDJmODU1NCIsIm5iZiI6MTc2MjI2NjQxOS42NTIsInN1YiI6IjY5MGEwZDMzYWNiMmJjMzBmMDcwY2M0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I5TEpU04udXCe4MP2dJK6fxM6S-nvUmKhYyeOeMK-ZM"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        32,
+        -272
+      ],
+      "id": "61d8f8f8-d323-456a-abf3-26997ab20c07",
+      "name": "Fetch Upcoming Movies"
+    },
+    {
+      "parameters": {
+        "url": "https://api.themoviedb.org/3/tv/popular",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "language",
+              "value": "en-US"
+            },
+            {
+              "name": "page",
+              "value": "={{ $json.page }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMTcyYzIzYjU2MmJjY2YzYzNhYzI0OTRmZDJmODU1NCIsIm5iZiI6MTc2MjI2NjQxOS42NTIsInN1YiI6IjY5MGEwZDMzYWNiMmJjMzBmMDcwY2M0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I5TEpU04udXCe4MP2dJK6fxM6S-nvUmKhYyeOeMK-ZM"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        32,
+        -64
+      ],
+      "id": "15f50d09-b80c-486e-b15b-20d61788b542",
+      "name": "Fetch Popular TV Series"
+    },
+    {
+      "parameters": {
+        "content": "# Phase 1",
+        "height": 1392,
+        "width": 1744,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -944,
+        -768
+      ],
+      "typeVersion": 1,
+      "id": "826cd9f7-144b-4d22-83bd-ab5515a03c07",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# Phase 2 for a single sheet",
+        "height": 432,
+        "width": 1584,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -944,
+        656
+      ],
+      "typeVersion": 1,
+      "id": "17eca644-3d16-49ee-a201-576a013c1896",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a professional movie reviewer who writes short, engaging, spoiler-free reviews.",
+              "role": "system"
+            },
+            {
+              "content": "=Write a 2–3 sentence review for the following:\n\\nTitle: {{ $json.Title }}\\nOverview: {{$json.Overview}}\\nRelease Date: {{$json['Release Date']}}\\nRating: {{ $json['Rating '] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -96,
+        832
+      ],
+      "id": "85f373d2-752a-4573-af8c-b80a8d3a4c1d",
+      "name": "Review Generation",
+      "credentials": {
+        "openAiApi": {
+          "id": "WTuFB8P3DNjwNZR1",
+          "name": "OpenAi - Alishba"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1u12ZADocYdH5f7mks0G4wMrHsSD8uUSrNA5KJuEISOs",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1u12ZADocYdH5f7mks0G4wMrHsSD8uUSrNA5KJuEISOs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Movies_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1u12ZADocYdH5f7mks0G4wMrHsSD8uUSrNA5KJuEISOs/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -464,
+        304
+      ],
+      "id": "a521baa1-3b8a-453b-869b-1736cff92233",
+      "name": "Read Existing Database",
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get new movies and existing movies\nconst newMovies = $('Clean and Format Data').all();\nconst existingMovies = $('Read Existing Database').all();\n\n// Create a Set of existing movie IDs for O(1) lookup\nconst existingIds = new Set(\n  existingMovies\n    .filter(item => item.json.id) // Filter out items without IDs\n    .map(item => String(item.json.id).trim())\n);\n\n// Process each new movie\nconst result = newMovies\n  .filter(movie => movie.json.id) // Only process movies with IDs\n  .map(movie => {\n    const movieId = String(movie.json.id).trim();\n    \n    return {\n      json: {\n        ...movie.json,\n        operation: existingIds.has(movieId) ? 'update' : 'insert'\n      }\n    };\n  });\n\nreturn result;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -64,
+        240
+      ],
+      "id": "547a4f13-7672-4971-a9ae-1a67e5211bd0",
+      "name": "Check for Duplicates",
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -240,
+        240
+      ],
+      "id": "7e533a11-a25f-4f23-b614-6b646dee40e4",
+      "name": "Merge1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "aaca564f-7818-4149-ad3f-9e4ee14d37bc",
+              "leftValue": "={{ $json.id !== undefined && $json.id !== null }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        112,
+        240
+      ],
+      "id": "258b9bd8-5bbc-43aa-b701-1cece3c55e14",
+      "name": "if database has data",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8a37ed74-f621-4c2e-a891-1a78f715aea3",
+              "leftValue": "={{ $json.operation }}",
+              "rightValue": "update",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        320,
+        224
+      ],
+      "id": "55759352-380a-46dc-b2a1-c5be34796a93",
+      "name": "If Duplicates?",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node (JavaScript)\nconst result = [];\n\nfor (let i = 1; i <= 65; i++) {\n  result.push({ page: i });\n}\n\nreturn result.map(item => ({ json: item }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2448,
+        448
+      ],
+      "id": "18435409-7cd3-47ff-bfaa-84edc9a37309",
+      "name": "pagesForUpcomingMovies"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -240,
+        -496
+      ],
+      "id": "a66cfc75-846d-4851-87d7-32e499c90c34",
+      "name": "Loop for Popular Movies"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -240,
+        -288
+      ],
+      "id": "e2438382-d585-4232-a1dd-b78a57b0bed9",
+      "name": "Loop for Upcoming Movies"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -240,
+        -80
+      ],
+      "id": "2e22d410-03f6-46e9-bd24-d6a04c629884",
+      "name": "Loop for Popular TV Shows"
+    },
+    {
+      "parameters": {
+        "content": "# Data Loading from TMDb using API",
+        "height": 720,
+        "width": 992,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -720,
+        -592
+      ],
+      "typeVersion": 1,
+      "id": "aa30e4ff-572c-4089-b56e-4b78fd24ad1d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node (JavaScript)\nconst result = [];\n\nfor (let i = 1; i <= 100; i++) {\n  result.push({ page: i });\n}\n\nreturn result.map(item => ({ json: item }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2448,
+        656
+      ],
+      "id": "e4a895b3-d53a-4958-8c6f-d15b5901496a",
+      "name": "pagesForPopularTVShow (1-100)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node (JavaScript)\nconst result = [];\n\nfor (let i = 1; i <= 100; i++) {\n  result.push({ page: i });\n}\n\nreturn result.map(item => ({ json: item }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2448,
+        240
+      ],
+      "id": "4ef66277-8731-4643-859b-33550cfa4e10",
+      "name": "pagesForPopularMovies (1-100)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node (JavaScript)\nconst result = [];\n\nfor (let i = 101; i <= 200; i++) {\n  result.push({ page: i });\n}\n\nreturn result.map(item => ({ json: item }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2448,
+        -128
+      ],
+      "id": "040de5fd-bd1a-4ac8-a478-281d3ca17f0a",
+      "name": "pagesForPopularMovies (101-200)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node (JavaScript)\nconst result = [];\n\nfor (let i = 101; i <= 200; i++) {\n  result.push({ page: i });\n}\n\nreturn result.map(item => ({ json: item }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2448,
+        32
+      ],
+      "id": "584f4877-75b5-437e-acbb-e572c40fc55b",
+      "name": "pagesForPopularTVShow (101-200)"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2768,
+        448
+      ],
+      "id": "f98a8846-49a1-4c2a-8245-8426e97cb571",
+      "name": "Phase 1 - Initiator 1.0"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9,
+              "triggerAtMinute": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2800,
+        -64
+      ],
+      "id": "f0e45739-881f-49e5-b2de-66e0768750da",
+      "name": "Phase 1 - Initiator 2.0"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node (JavaScript)\nconst result = [];\n\nfor (let i = 201; i <= 300; i++) {\n  result.push({ page: i });\n}\n\nreturn result.map(item => ({ json: item }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2448,
+        -320
+      ],
+      "id": "3d6e13da-b8e1-45f1-9dcf-ee8e72fdff49",
+      "name": "pagesForPopularTVShow (201-300)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node (JavaScript)\nconst result = [];\n\nfor  (let i = 201; i <= 300; i++) {\n  result.push({ page: i });\n}\n\nreturn result.map(item => ({ json: item }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2448,
+        -480
+      ],
+      "id": "98987c33-da82-4716-9102-9d776acdbab5",
+      "name": "pagesForPopularMovies (201-300)"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9,
+              "triggerAtMinute": 4
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2800,
+        -400
+      ],
+      "id": "b6dc799c-66c3-4a2b-929f-dda1a4e6891e",
+      "name": "Phase 1 - Initiator 3.0"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node (JavaScript)\nconst result = [];\n\nfor  (let i = 301; i <= 400; i++) {\n  result.push({ page: i });\n}\n\nreturn result.map(item => ({ json: item }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2464,
+        -848
+      ],
+      "id": "6155ba10-1b2b-46e6-aa0f-7f406baadd67",
+      "name": "pagesForPopularMovies (301-400)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node (JavaScript)\nconst result = [];\n\nfor (let i = 301; i <= 400; i++) {\n  result.push({ page: i });\n}\n\nreturn result.map(item => ({ json: item }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2464,
+        -688
+      ],
+      "id": "1bba7225-520d-4ac9-8485-3c1f46720e47",
+      "name": "pagesForPopularTVShow (301-400)"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9,
+              "triggerAtMinute": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2816,
+        -768
+      ],
+      "id": "5f7f7de9-ccbc-41fb-bfbe-867d645fd20e",
+      "name": "Phase 1 - Initiator 4.0"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9,
+              "triggerAtMinute": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2816,
+        -1120
+      ],
+      "id": "b1519d9f-722d-4a44-8bcf-1e4c2c3e6734",
+      "name": "Phase 1 - Initiator 5.0"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node (JavaScript)\nconst result = [];\n\nfor  (let i = 401; i <= 500; i++) {\n  result.push({ page: i });\n}\n\nreturn result.map(item => ({ json: item }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2464,
+        -1200
+      ],
+      "id": "1d7ac505-fbc6-4fa0-9771-8c96e1aa1799",
+      "name": "pagesForPopularMovies (401-500)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node (JavaScript)\nconst result = [];\n\nfor (let i = 401; i <= 500; i++) {\n  result.push({ page: i });\n}\n\nreturn result.map(item => ({ json: item }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2464,
+        -1040
+      ],
+      "id": "8b5de0f2-9c3e-4f90-8918-2335415e8976",
+      "name": "pagesForPopularTVShow (401-500)"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        544,
+        208
+      ],
+      "id": "03d1868a-b08e-4a63-9c7f-70ad672d3811",
+      "name": "No Operation, do nothing",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const data = item.json.results || [];\n  return data.map(entry => ({\n    json: {\n      id: entry.id,\n      title: entry.title || entry.name,\n      release_date: entry.release_date || entry.first_air_date,\n      overview: entry.overview,\n      rating: entry.vote_average,\n      popularity: entry.popularity,\n      genre_ids: entry.genre_ids,\n      poster_url: entry.poster_path \n        ? `https://image.tmdb.org/t/p/w500${entry.poster_path}`\n        : '',\n      type: entry.title ? 'Movie' : 'Series'\n    }\n  }));\n}).flat();\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        912,
+        -592
+      ],
+      "id": "ddcd1bca-d5fe-4ea3-95b4-5034fa82432e",
+      "name": "Clean and Format Movie Data"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const data = item.json.results || [];\n  return data.map(entry => ({\n    json: {\n      id: entry.id,\n      title: entry.title || entry.name,\n      release_date: entry.release_date || entry.first_air_date,\n      overview: entry.overview,\n      rating: entry.vote_average,\n      popularity: entry.popularity,\n      genre_ids: entry.genre_ids,\n      poster_url: entry.poster_path \n        ? `https://image.tmdb.org/t/p/w500${entry.poster_path}`\n        : '',\n      type: entry.title ? 'UpcomingMovie' : 'Series'\n    }\n  }));\n}).flat();\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        912,
+        -384
+      ],
+      "id": "ef2483e7-84c0-4684-bf50-dc2e15b64490",
+      "name": "Clean and Format Movie Data1"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const data = item.json.results || [];\n  return data.map(entry => ({\n    json: {\n      id: entry.id,\n      title: entry.title || entry.name,\n      release_date: entry.release_date || entry.first_air_date,\n      overview: entry.overview,\n      rating: entry.vote_average,\n      popularity: entry.popularity,\n      genre_ids: entry.genre_ids,\n      poster_url: entry.poster_path \n        ? `https://image.tmdb.org/t/p/w500${entry.poster_path}`\n        : '',\n      type: entry.title ? 'Movie' : 'Series'\n    }\n  }));\n}).flat();\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        912,
+        -176
+      ],
+      "id": "79032595-643d-42eb-9025-b188341ae7ec",
+      "name": "Clean and Format TV Data"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1779211863,
+          "mode": "list",
+          "cachedResultName": "Popular TV Series",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1779211863"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1072,
+        -96
+      ],
+      "id": "9aa4ddc9-b502-4230-9ed3-b823bb74551c",
+      "name": "Read Existing TV Series",
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1660865768,
+          "mode": "list",
+          "cachedResultName": "Upcoming Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1660865768"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1072,
+        -304
+      ],
+      "id": "b7abdda2-08e8-49f6-992c-58167ce22bd8",
+      "name": "Read Existing Movies1",
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Popular Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1072,
+        -512
+      ],
+      "id": "4ccf93c9-5c85-47cf-a04a-04ed5405eb7a",
+      "name": "Read Existing Movies",
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1280,
+        -160
+      ],
+      "id": "b70d76fd-8782-4c8a-a845-f65b512d644a",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1264,
+        -368
+      ],
+      "id": "ce395721-e073-4ec5-8f63-0a00e39ee7f4",
+      "name": "Merge3"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1264,
+        -576
+      ],
+      "id": "0e1157d6-9569-4e9c-b46a-06422cbf7a42",
+      "name": "Merge4"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get new and existing TV series data\nconst newMovies = $('Clean and Format TV Data').all() || [];\nconst existingMovies = $('Read Existing TV Series').all() || [];\n\n// If no existing data, treat all as inserts\nif (!existingMovies.length) {\n  return newMovies.map(movie => ({\n    json: {\n      ...movie.json,\n      operation: 'insert'\n    }\n  }));\n}\n\n// Safely extract IDs from existing records, handling inconsistent key names\nconst existingIds = new Set(\n  existingMovies\n    .map(item => {\n      if (!item || !item.json) return null;\n      const id =\n        item.json.id ??\n        item.json[\"id \"] ??\n        item.json[\"ID\"] ??\n        item.json[\"Id\"];\n      return id ? String(id).trim() : null;\n    })\n    .filter(Boolean)\n);\n\n// Process each new TV show\nconst result = newMovies\n  .filter(movie => movie.json?.id)\n  .map(movie => {\n    const movieId = String(movie.json.id).trim();\n    return {\n      json: {\n        ...movie.json,\n        operation: existingIds.has(movieId) ? 'update' : 'insert'\n      }\n    };\n  });\n\nreturn result;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1456,
+        -160
+      ],
+      "id": "2881cc0a-445c-40db-9c4d-b0c5821ede09",
+      "name": "Check for Duplicates1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8a37ed74-f621-4c2e-a891-1a78f715aea3",
+              "leftValue": "={{ $json.operation }}",
+              "rightValue": "update",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1904,
+        -176
+      ],
+      "id": "4b28f7e8-1dbb-4107-be4d-f956d2cab6b9",
+      "name": "If Duplicates?1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get new and existing movies\nconst newMovies = $('Clean and Format Movie Data1').all();\nconst existingMovies = $('Read Existing Movies1').all() || [];\n\n// If existingMovies is null or empty, treat all newMovies as inserts\nif (!existingMovies.length) {\n  return newMovies.map(movie => ({\n    json: {\n      ...movie.json,\n      operation: 'insert'\n    }\n  }));\n}\n\n// Extract valid IDs from existing movies (handle inconsistent key names)\nconst existingIds = new Set(\n  existingMovies\n    .map(item => {\n      if (!item || !item.json) return null;\n      const id =\n        item.json.id ??\n        item.json[\"id \"] ??\n        item.json[\"ID\"] ??\n        item.json[\"Id\"];\n      return id ? String(id).trim() : null;\n    })\n    .filter(Boolean)\n);\n\n// Process new movies\nconst result = newMovies\n  .filter(movie => movie.json?.id)\n  .map(movie => {\n    const movieId = String(movie.json.id).trim();\n    return {\n      json: {\n        ...movie.json,\n        operation: existingIds.has(movieId) ? 'update' : 'insert'\n      }\n    };\n  });\n\nreturn result;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1456,
+        -368
+      ],
+      "id": "05ba5257-0fdb-459c-b80d-d9dff5744b88",
+      "name": "Check for Duplicates2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8a37ed74-f621-4c2e-a891-1a78f715aea3",
+              "leftValue": "={{ $json.operation }}",
+              "rightValue": "update",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1888,
+        -384
+      ],
+      "id": "3f1fd828-5a48-4058-ba3c-58a4d5dc217e",
+      "name": "If Duplicates?2"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Popular Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id }}",
+            "Title": "={{ $json.title }}",
+            "Release Date": "={{ $json.release_date }}",
+            "Overview": "={{ $json.overview }}",
+            "Type ": "={{ $json.type }}",
+            "Rating ": "={{ $json.rating }}",
+            "Popularity": "={{ $json.popularity }}",
+            "Poster URL": "={{ $json.poster_url }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Review",
+              "displayName": "Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2128,
+        -576
+      ],
+      "id": "a2f0b287-11ae-4c57-85b4-29107446b106",
+      "name": "Save to Database3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get new and existing movies\nconst newMovies = $('Clean and Format Movie Data').all() || [];\nconst existingMovies = $('Read Existing Movies').all() || [];\n\n// If no existing data, mark everything as insert\nif (!existingMovies.length) {\n  return newMovies.map(movie => ({\n    json: {\n      ...movie.json,\n      operation: 'insert'\n    }\n  }));\n}\n\n// Safely extract IDs from existing records, handling inconsistent key names\nconst existingIds = new Set(\n  existingMovies\n    .map(item => {\n      if (!item || !item.json) return null;\n      const id =\n        item.json.id ??\n        item.json[\"id \"] ??\n        item.json[\"ID\"] ??\n        item.json[\"Id\"];\n      return id ? String(id).trim() : null;\n    })\n    .filter(Boolean)\n);\n\n// Process new movies\nconst result = newMovies\n  .filter(movie => movie.json?.id)\n  .map(movie => {\n    const movieId = String(movie.json.id).trim();\n    return {\n      json: {\n        ...movie.json,\n        operation: existingIds.has(movieId) ? 'update' : 'insert'\n      }\n    };\n  });\n\nreturn result;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1456,
+        -576
+      ],
+      "id": "6f4df53e-52c4-4b13-ad44-172a45a0bec3",
+      "name": "Check for Duplicates3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8a37ed74-f621-4c2e-a891-1a78f715aea3",
+              "leftValue": "={{ $json.operation }}",
+              "rightValue": "update",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1888,
+        -592
+      ],
+      "id": "dfe903e3-e2a1-4b19-b7ff-94f569cf342c",
+      "name": "If Duplicates?3"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1888,
+        -768
+      ],
+      "id": "711044b7-8fe2-4acc-aaf9-7b8428d53e63",
+      "name": "No Operation, do nothing3"
+    },
+    {
+      "parameters": {
+        "content": "# For Separate Individual Sheets",
+        "height": 848,
+        "width": 1552,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        848,
+        -784
+      ],
+      "typeVersion": 1,
+      "id": "b70735b5-39b3-4c97-94bc-5e48ba4fb4f8",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b5e23194-bd5c-4b19-a7ef-958196ae9f4e",
+              "leftValue": "={{ $json.type }}",
+              "rightValue": "Movie",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1664,
+        -576
+      ],
+      "id": "c750e7b2-123b-4034-b5d2-7697f9409dbe",
+      "name": "IF (Type)"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b5e23194-bd5c-4b19-a7ef-958196ae9f4e",
+              "leftValue": "={{ $json.type }}",
+              "rightValue": "UpcomingMovie",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1664,
+        -368
+      ],
+      "id": "868cfc4e-74e5-4b93-8e06-40fb16ff99f9",
+      "name": "IF (Type)1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b5e23194-bd5c-4b19-a7ef-958196ae9f4e",
+              "leftValue": "={{ $json.type }}",
+              "rightValue": "Series",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1664,
+        -160
+      ],
+      "id": "28b24afc-e359-4fe2-8bae-66810ebcb8d1",
+      "name": "IF (Type)2"
+    },
+    {
+      "parameters": {
+        "content": "# For Single Sheet of Data",
+        "height": 464,
+        "width": 1648
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -896,
+        144
+      ],
+      "typeVersion": 1,
+      "id": "25c5900c-7c2a-44ae-8f25-705de191455a",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1660865768,
+          "mode": "list",
+          "cachedResultName": "Upcoming Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1660865768"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id }}",
+            "Title": "={{ $json.title }}",
+            "Release Date": "={{ $json.release_date }}",
+            "Overview": "={{ $json.overview }}",
+            "Type ": "={{ $json.type }}",
+            "Rating ": "={{ $json.rating }}",
+            "Popularity": "={{ $json.popularity }}",
+            "Poster URL": "={{ $json.poster_url }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Review",
+              "displayName": "Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2144,
+        -368
+      ],
+      "id": "17ab9e8f-277c-4f25-a854-b9d86c154c75",
+      "name": "Save to Database4",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1779211863,
+          "mode": "list",
+          "cachedResultName": "Popular TV Series",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1779211863"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id }}",
+            "Title": "={{ $json.title }}",
+            "Release Date": "={{ $json.release_date }}",
+            "Overview": "={{ $json.overview }}",
+            "Type ": "={{ $json.type }}",
+            "Rating ": "={{ $json.rating }}",
+            "Popularity": "={{ $json.popularity }}",
+            "Poster URL": "={{ $json.poster_url }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Review",
+              "displayName": "Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2144,
+        -160
+      ],
+      "id": "97a9df77-b7c4-4f3c-958c-f5c21a6999ba",
+      "name": "Save to Database5",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Popular Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1088,
+        160
+      ],
+      "id": "4b2b8559-f04d-47c8-956f-ad657770a666",
+      "name": "Get Data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get all incoming items\nconst items = $input.all();\n\n// Sort items by \"Popularity\" descending\nitems.sort((a, b) => {\n  const popA = Number(a.json.Popularity) || 0;\n  const popB = Number(b.json.Popularity) || 0;\n  return popB - popA;\n});\n\n// Return the sorted items\nreturn items;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1296,
+        160
+      ],
+      "id": "c53e0c00-d166-4e5e-b782-7d2430c25607",
+      "name": "sort by Popularity",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        160
+      ],
+      "id": "23f64795-dc45-4623-bd4b-0347bee2e5f5",
+      "name": "Sort Initiator",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "# Initiator Setup\n- ## Triggers \n- ## Query Page limit handling",
+        "height": 2256,
+        "width": 720,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2896,
+        -1392
+      ],
+      "typeVersion": 1,
+      "id": "3c297ae5-6777-4202-a10f-d963f92f9d53",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "daysInterval": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1056,
+        1616
+      ],
+      "id": "0a543ef7-ba47-40c3-9d6e-1be107e3e7eb",
+      "name": "Phase 2 - Initiator1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Popular Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -736,
+        1280
+      ],
+      "id": "63fecb20-87fe-45b2-bbc3-e65be50f19d8",
+      "name": "Read Movie Data1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -320,
+        1280
+      ],
+      "id": "7a43b82c-2844-4134-bbac-048e74d9c033",
+      "name": "Splot in Batches1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae1ec5eb-f62d-4508-a5ba-4c41c3e2f078",
+              "name": "id",
+              "value": "={{ $('Read Movie Data1').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "6e418712-7c3c-4514-9860-cea729edb59f",
+              "name": "review",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        1296
+      ],
+      "id": "62a2ba2f-23bc-42c6-b11c-e108dafcf792",
+      "name": "Format Review Output1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Popular Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Reviwed?": "Yes",
+            "Review": "={{ $json.review }}",
+            "id": "={{ $json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Review",
+              "displayName": "Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        1296
+      ],
+      "id": "49da1cdd-b24f-49f0-a7ce-91af50a32edf",
+      "name": "Update Movie Review1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        1168
+      ],
+      "id": "9618196f-0e34-43b2-93d7-db49686bf075",
+      "name": "No Operation1"
+    },
+    {
+      "parameters": {
+        "maxItems": 2
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -544,
+        1280
+      ],
+      "id": "bfe5bd15-2445-4653-b764-d5d01ece4139",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "content": "# Phase 2: For Separate Sheets\n",
+        "height": 1104,
+        "width": 1584,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -944,
+        1120
+      ],
+      "typeVersion": 1,
+      "id": "453c70c0-c14f-451d-ad98-8a579080224f",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a professional movie reviewer who writes short, engaging, spoiler-free reviews.",
+              "role": "system"
+            },
+            {
+              "content": "=Write a 2–3 sentence review for the following:\n\\nTitle: {{ $json.Title }}\\nOverview: {{$json.Overview}}\\nRelease Date: {{$json['Release Date']}}\\nRating: {{ $json['Rating '] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -96,
+        1296
+      ],
+      "id": "769c90ce-9aac-4fa4-a020-277a03d10859",
+      "name": "Review Generation1",
+      "credentials": {
+        "openAiApi": {
+          "id": "WTuFB8P3DNjwNZR1",
+          "name": "OpenAi - Alishba"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1660865768,
+          "mode": "list",
+          "cachedResultName": "Upcoming Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1660865768"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -736,
+        1616
+      ],
+      "id": "1ee999fc-ef1e-4abe-93f3-701dcfde6ba2",
+      "name": "Read Movie Data2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -304,
+        1616
+      ],
+      "id": "57999039-59b5-442c-b707-870a9feeb95f",
+      "name": "Splot in Batches2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae1ec5eb-f62d-4508-a5ba-4c41c3e2f078",
+              "name": "id",
+              "value": "={{ $('Read Movie Data2').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "6e418712-7c3c-4514-9860-cea729edb59f",
+              "name": "review",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        1632
+      ],
+      "id": "465f6f7e-caad-4831-8674-afaa04020e44",
+      "name": "Format Review Output2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1660865768,
+          "mode": "list",
+          "cachedResultName": "Upcoming Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1660865768"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Reviwed?": "Yes",
+            "Review": "={{ $json.review }}",
+            "id": "={{ $json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Review",
+              "displayName": "Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        432,
+        1632
+      ],
+      "id": "d3959c2c-e733-4932-ba86-148accbd2c71",
+      "name": "Update Movie Review2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        1504
+      ],
+      "id": "5fd45ab0-a07b-4065-8118-34debf08f5fd",
+      "name": "No Operation2"
+    },
+    {
+      "parameters": {
+        "maxItems": 2
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -528,
+        1616
+      ],
+      "id": "7ae2ce9f-c2dc-4f1f-b366-557de1122083",
+      "name": "Limit2"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a professional movie reviewer who writes short, engaging, spoiler-free reviews.",
+              "role": "system"
+            },
+            {
+              "content": "=Write a 2–3 sentence review for the following:\n\\nTitle: {{ $json.Title }}\\nOverview: {{$json.Overview}}\\nRelease Date: {{$json['Release Date']}}\\nRating: {{ $json['Rating '] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -80,
+        1632
+      ],
+      "id": "4bc4cd45-7464-4ede-95eb-b754eb3ca711",
+      "name": "Review Generation2",
+      "credentials": {
+        "openAiApi": {
+          "id": "WTuFB8P3DNjwNZR1",
+          "name": "OpenAi - Alishba"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1779211863,
+          "mode": "list",
+          "cachedResultName": "Popular TV Series",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1779211863"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -752,
+        1952
+      ],
+      "id": "8d1e32ea-42f3-40ce-bbc7-0d61cbe34aa9",
+      "name": "Read Movie Data3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -320,
+        1952
+      ],
+      "id": "fc905f79-fe87-4019-be0a-32fb4d9c6fba",
+      "name": "Splot in Batches3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae1ec5eb-f62d-4508-a5ba-4c41c3e2f078",
+              "name": "id",
+              "value": "={{ $('Read Movie Data3').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "6e418712-7c3c-4514-9860-cea729edb59f",
+              "name": "review",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        1968
+      ],
+      "id": "270e438e-64ef-44b9-93ca-778dcc5709a1",
+      "name": "Format Review Output3"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1779211863,
+          "mode": "list",
+          "cachedResultName": "Popular TV Series",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1779211863"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Reviwed?": "Yes",
+            "Review": "={{ $json.review }}",
+            "id": "={{ $json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Review",
+              "displayName": "Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        1968
+      ],
+      "id": "8627cab9-30ff-461a-aad4-6840b0670e65",
+      "name": "Update Movie Review3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        1840
+      ],
+      "id": "04c704e7-75f9-4443-a8ba-ef865aaf6776",
+      "name": "No Operation3"
+    },
+    {
+      "parameters": {
+        "maxItems": 2
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -544,
+        1952
+      ],
+      "id": "050fac27-3149-4775-a12f-1adf595ec49c",
+      "name": "Limit3"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a professional movie reviewer who writes short, engaging, spoiler-free reviews.",
+              "role": "system"
+            },
+            {
+              "content": "=Write a 2–3 sentence review for the following:\n\\nTitle: {{ $json.Title }}\\nOverview: {{$json.Overview}}\\nRelease Date: {{$json['Release Date']}}\\nRating: {{ $json['Rating '] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -96,
+        1968
+      ],
+      "id": "21de2b24-514d-4bf1-944e-5a1a7120b854",
+      "name": "Review Generation3",
+      "credentials": {
+        "openAiApi": {
+          "id": "WTuFB8P3DNjwNZR1",
+          "name": "OpenAi - Alishba"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Phase 1 - Initiator 3.0": [
+      {
+        "json": {
+          "timestamp": "2025-11-04T17:55:41.308+01:00",
+          "Readable date": "November 4th 2025, 5:55:41 pm",
+          "Readable time": "5:55:41 pm",
+          "Day of week": "Tuesday",
+          "Year": "2025",
+          "Month": "November",
+          "Day of month": "04",
+          "Hour": "17",
+          "Minute": "55",
+          "Second": "41",
+          "Timezone": "Europe/Amsterdam (UTC+01:00)"
+        }
+      }
+    ],
+    "Phase 1 - Initiator 4.0": [
+      {
+        "json": {
+          "timestamp": "2025-11-04T17:55:41.308+01:00",
+          "Readable date": "November 4th 2025, 5:55:41 pm",
+          "Readable time": "5:55:41 pm",
+          "Day of week": "Tuesday",
+          "Year": "2025",
+          "Month": "November",
+          "Day of month": "04",
+          "Hour": "17",
+          "Minute": "55",
+          "Second": "41",
+          "Timezone": "Europe/Amsterdam (UTC+01:00)"
+        }
+      }
+    ],
+    "Phase 1 - Initiator 5.0": [
+      {
+        "json": {
+          "timestamp": "2025-11-04T17:55:41.308+01:00",
+          "Readable date": "November 4th 2025, 5:55:41 pm",
+          "Readable time": "5:55:41 pm",
+          "Day of week": "Tuesday",
+          "Year": "2025",
+          "Month": "November",
+          "Day of month": "04",
+          "Hour": "17",
+          "Minute": "55",
+          "Second": "41",
+          "Timezone": "Europe/Amsterdam (UTC+01:00)"
+        }
+      }
+    ],
+    "Phase 1 - Initiator 1.0": [
+      {
+        "json": {
+          "timestamp": "2025-11-04T17:55:41.308+01:00",
+          "Readable date": "November 4th 2025, 5:55:41 pm",
+          "Readable time": "5:55:41 pm",
+          "Day of week": "Tuesday",
+          "Year": "2025",
+          "Month": "November",
+          "Day of month": "04",
+          "Hour": "17",
+          "Minute": "55",
+          "Second": "41",
+          "Timezone": "Europe/Amsterdam (UTC+01:00)"
+        }
+      }
+    ],
+    "Phase 1 - Initiator 2.0": [
+      {
+        "json": {
+          "timestamp": "2025-11-04T17:55:41.308+01:00",
+          "Readable date": "November 4th 2025, 5:55:41 pm",
+          "Readable time": "5:55:41 pm",
+          "Day of week": "Tuesday",
+          "Year": "2025",
+          "Month": "November",
+          "Day of month": "04",
+          "Hour": "17",
+          "Minute": "55",
+          "Second": "41",
+          "Timezone": "Europe/Amsterdam (UTC+01:00)"
+        }
+      }
+    ],
+    "Sort Initiator": [
+      {
+        "json": {
+          "timestamp": "2025-11-04T17:55:41.308+01:00",
+          "Readable date": "November 4th 2025, 5:55:41 pm",
+          "Readable time": "5:55:41 pm",
+          "Day of week": "Tuesday",
+          "Year": "2025",
+          "Month": "November",
+          "Day of month": "04",
+          "Hour": "17",
+          "Minute": "55",
+          "Second": "41",
+          "Timezone": "Europe/Amsterdam (UTC+01:00)"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Clean and Format Data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Existing Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean and Format Data": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Phase 2 - Initiator": {
+      "main": [
+        [
+          {
+            "node": "Read Movie Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Movie Data": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Splot in Batches": {
+      "main": [
+        [
+          {
+            "node": "No Operation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Review Generation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Review Output": {
+      "main": [
+        [
+          {
+            "node": "Update Movie Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Movie Review": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Popular TV Series": {
+      "main": [
+        [
+          {
+            "node": "Loop for Popular TV Shows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Upcoming Movies": {
+      "main": [
+        [
+          {
+            "node": "Loop for Upcoming Movies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Popular Movies": {
+      "main": [
+        [
+          {
+            "node": "Loop for Popular Movies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Review Generation": {
+      "main": [
+        [
+          {
+            "node": "Format Review Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Existing Database": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Check for Duplicates": {
+      "main": [
+        [
+          {
+            "node": "if database has data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Check for Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "if database has data": {
+      "main": [
+        [
+          {
+            "node": "If Duplicates?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Save to Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Duplicates?": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Save to Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop for Popular Movies": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Clean and Format Movie Data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Existing Movies",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Popular Movies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pagesForUpcomingMovies": {
+      "main": [
+        [
+          {
+            "node": "Loop for Upcoming Movies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop for Upcoming Movies": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Clean and Format Movie Data1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Existing Movies1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Upcoming Movies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop for Popular TV Shows": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          },
+          {
+            "node": "Clean and Format TV Data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Existing TV Series",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Popular TV Series",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pagesForPopularTVShow (1-100)": {
+      "main": [
+        [
+          {
+            "node": "Loop for Popular TV Shows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pagesForPopularMovies (1-100)": {
+      "main": [
+        [
+          {
+            "node": "Loop for Popular Movies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Phase 1 - Initiator 1.0": {
+      "main": [
+        [
+          {
+            "node": "pagesForPopularMovies (1-100)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "pagesForPopularTVShow (1-100)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "pagesForUpcomingMovies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Phase 1 - Initiator 2.0": {
+      "main": [
+        [
+          {
+            "node": "pagesForPopularMovies (101-200)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "pagesForPopularTVShow (101-200)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pagesForPopularTVShow (101-200)": {
+      "main": [
+        [
+          {
+            "node": "Loop for Popular TV Shows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pagesForPopularMovies (101-200)": {
+      "main": [
+        [
+          {
+            "node": "Loop for Popular Movies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Phase 1 - Initiator 3.0": {
+      "main": [
+        [
+          {
+            "node": "pagesForPopularMovies (201-300)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "pagesForPopularTVShow (201-300)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pagesForPopularTVShow (201-300)": {
+      "main": [
+        [
+          {
+            "node": "Loop for Popular TV Shows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pagesForPopularMovies (201-300)": {
+      "main": [
+        [
+          {
+            "node": "Loop for Popular Movies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pagesForPopularMovies (301-400)": {
+      "main": [
+        [
+          {
+            "node": "Loop for Popular Movies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pagesForPopularTVShow (301-400)": {
+      "main": [
+        [
+          {
+            "node": "Loop for Popular TV Shows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Phase 1 - Initiator 4.0": {
+      "main": [
+        [
+          {
+            "node": "pagesForPopularMovies (301-400)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "pagesForPopularTVShow (301-400)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Phase 1 - Initiator 5.0": {
+      "main": [
+        [
+          {
+            "node": "pagesForPopularMovies (401-500)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "pagesForPopularTVShow (401-500)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pagesForPopularTVShow (401-500)": {
+      "main": [
+        [
+          {
+            "node": "Loop for Popular TV Shows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pagesForPopularMovies (401-500)": {
+      "main": [
+        [
+          {
+            "node": "Loop for Popular Movies",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Existing TV Series": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Clean and Format TV Data": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean and Format Movie Data1": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Existing Movies1": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Read Existing Movies": {
+      "main": [
+        [
+          {
+            "node": "Merge4",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Clean and Format Movie Data": {
+      "main": [
+        [
+          {
+            "node": "Merge4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check for Duplicates1": {
+      "main": [
+        [
+          {
+            "node": "IF (Type)2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Duplicates?1": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Save to Database5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Check for Duplicates1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check for Duplicates2": {
+      "main": [
+        [
+          {
+            "node": "IF (Type)1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Duplicates?2": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Save to Database4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge3": {
+      "main": [
+        [
+          {
+            "node": "Check for Duplicates2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check for Duplicates3": {
+      "main": [
+        [
+          {
+            "node": "IF (Type)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Duplicates?3": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Save to Database3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge4": {
+      "main": [
+        [
+          {
+            "node": "Check for Duplicates3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF (Type)": {
+      "main": [
+        [
+          {
+            "node": "If Duplicates?3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF (Type)1": {
+      "main": [
+        [
+          {
+            "node": "If Duplicates?2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF (Type)2": {
+      "main": [
+        [
+          {
+            "node": "If Duplicates?1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Data": {
+      "main": [
+        [
+          {
+            "node": "sort by Popularity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort Initiator": {
+      "main": [
+        [
+          {
+            "node": "Get Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Phase 2 - Initiator1": {
+      "main": [
+        [
+          {
+            "node": "Read Movie Data1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Movie Data2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Movie Data3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Movie Data1": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Splot in Batches1": {
+      "main": [
+        [
+          {
+            "node": "No Operation1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Review Generation1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Review Output1": {
+      "main": [
+        [
+          {
+            "node": "Update Movie Review1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Movie Review1": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Review Generation1": {
+      "main": [
+        [
+          {
+            "node": "Format Review Output1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Movie Data2": {
+      "main": [
+        [
+          {
+            "node": "Limit2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Splot in Batches2": {
+      "main": [
+        [
+          {
+            "node": "No Operation2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Review Generation2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Review Output2": {
+      "main": [
+        [
+          {
+            "node": "Update Movie Review2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Movie Review2": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit2": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Review Generation2": {
+      "main": [
+        [
+          {
+            "node": "Format Review Output2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Movie Data3": {
+      "main": [
+        [
+          {
+            "node": "Limit3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Splot in Batches3": {
+      "main": [
+        [
+          {
+            "node": "No Operation3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Review Generation3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Review Output3": {
+      "main": [
+        [
+          {
+            "node": "Update Movie Review3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Movie Review3": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit3": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Review Generation3": {
+      "main": [
+        [
+          {
+            "node": "Format Review Output3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "652a55c3-ec6e-4bc1-b96b-34628dfca5a4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "55cbb15b2809b0fe60eec1f3c1c42cebcb3176b9f7015722d8842d983c16c651"
+  },
+  "id": "QtasNW9YPjF2NJnC",
+  "tags": []
+}
