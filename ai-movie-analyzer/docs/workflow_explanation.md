@@ -41,3 +41,14 @@ This document provides a **detailed technical breakdown** of how the Movie Analy
 - Poster URLs are formatted via:
 ```js
 https://image.tmdb.org/t/p/w500${poster_path}
+
+## **🧩 Phase 1 (Continued) — Database Sync**
+### **4. Duplicate Check**
+To prevent duplicate entries:
+- **Check for Duplicates** nodes compare fetched TMDb data with existing Google Sheets data.
+- A **Set()** of existing **ids** ensures O(1) lookup performance.
+  - **"operation": "insert"** → if new
+  - **"operation": "update"** → if already exists
+This enables incremental updates without redundant rows.
+
+### **5. Data Storage**
