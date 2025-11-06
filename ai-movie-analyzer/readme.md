@@ -80,7 +80,7 @@ It automatically updates a centralized Google Sheets database with new entries, 
 
 Below is a visual layout of the entire n8n workflow:
 
-![Workflow Diagram](./Screenshot%202025-11-06%20130405.png)
+![Workflow Diagram](./docs/)
 
 ---
 
@@ -89,3 +89,4 @@ Below is a visual layout of the entire n8n workflow:
 1. Import the provided JSON file into **n8n**:
    ```bash
    Movie Analyzer AI.json
+
