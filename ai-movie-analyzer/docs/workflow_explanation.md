@@ -36,12 +36,12 @@ This document provides a **detailed technical breakdown** of how the Movie Analy
     genre_ids,
     poster_url,
     type
-  }
+  } ```
 - The type field dynamically identifies if the item is a **Movie**, **UpcomingMovie**, or **Series**.
 - Poster URLs are formatted via:
 ```js
 https://image.tmdb.org/t/p/w500${poster_path}
-
+```
 ## **🧩 Phase 1 (Continued) — Database Sync**
 ### **4. Duplicate Check**
 To prevent duplicate entries:
@@ -52,3 +52,4 @@ To prevent duplicate entries:
 This enables incremental updates without redundant rows.
 
 ### **5. Data Storage**
+
