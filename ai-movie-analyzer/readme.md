@@ -80,7 +80,7 @@ It automatically updates a centralized Google Sheets database with new entries, 
 
 Below is a visual layout of the entire n8n workflow:
 
-![Workflow Diagram](./docs/)
+![Workflow Diagram](./docs/workflow-diagram)
 
 ---
 
@@ -89,4 +89,21 @@ Below is a visual layout of the entire n8n workflow:
 1. Import the provided JSON file into **n8n**:
    ```bash
    Movie Analyzer AI.json
+2. Configure your credentials:
+  - TMDb API Bearer Token
+  - Google Sheets OAuth2 credentials
+  - OpenAI API Key (via LangChain node)
+3. Schedule triggers according to your needs.
+4. Run workflow manually or allow it to auto-execute daily.
 
+---
+
+## 📈 Output
+- Clean, updated movie/TV data in Google Sheets.
+- AI-written reviews ready for publishing or analytics.
+- Fully automated pipeline requiring **zero manual maintenance**.
+
+---
+
+## 📜 License
+MIT License © 2025 — Created by **dev-belal**
