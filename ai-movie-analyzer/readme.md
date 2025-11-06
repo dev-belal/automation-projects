@@ -80,7 +80,7 @@ It automatically updates a centralized Google Sheets database with new entries, 
 
 Below is a visual layout of the entire n8n workflow:
 
-![Workflow Diagram](./docs/workflow-diagram)
+![Workflow Diagram](./docs/workflow-diagram.png)
 
 ---
 
@@ -107,3 +107,4 @@ Below is a visual layout of the entire n8n workflow:
 
 ## 📜 License
 MIT License © 2025 — Created by **dev-belal**
+
