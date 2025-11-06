@@ -37,3 +37,7 @@ This document provides a **detailed technical breakdown** of how the Movie Analy
     poster_url,
     type
   }
+- The type field dynamically identifies if the item is a **Movie**, **UpcomingMovie**, or **Series**.
+- Poster URLs are formatted via:
+```js
+https://image.tmdb.org/t/p/w500${poster_path}
