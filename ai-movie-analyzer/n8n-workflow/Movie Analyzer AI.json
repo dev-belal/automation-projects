@@ -9,7 +9,7 @@
       "typeVersion": 3.2,
       "position": [
         -704,
-        224
+        256
       ],
       "id": "817faa9b-f5e3-4962-9f9b-896a92e204f5",
       "name": "Merge",
@@ -23,7 +23,7 @@
       "typeVersion": 2,
       "position": [
         -464,
-        176
+        208
       ],
       "id": "fab739f1-49b2-4ddb-a260-7f5f408891e9",
       "name": "Clean and Format Data",
@@ -169,7 +169,7 @@
       "typeVersion": 4.7,
       "position": [
         -80,
-        448
+        480
       ],
       "id": "1d4640b9-86d9-486a-89ec-cbc54aa0e178",
       "name": "Save to Database",
@@ -194,11 +194,12 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -880,
-        816
+        -736,
+        -992
       ],
       "id": "fa17495d-2d2c-476f-8f78-99b132a54dc6",
-      "name": "Phase 2 - Initiator"
+      "name": "Phase 2 - Initiator",
+      "disabled": true
     },
     {
       "parameters": {
@@ -228,8 +229,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -704,
-        816
+        -560,
+        -992
       ],
       "id": "9e83ae77-b1c7-4777-81cf-824b5aea0a04",
       "name": "Read Movie Data",
@@ -238,7 +239,8 @@
           "id": "h5INhoXgvfSqfxVB",
           "name": "Google Sheets - Syed Belal"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -247,11 +249,12 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -320,
-        816
+        -176,
+        -992
       ],
       "id": "1c0b6d7e-4809-4e0c-b51a-45068eba1a41",
-      "name": "Splot in Batches"
+      "name": "Splot in Batches",
+      "disabled": true
     },
     {
       "parameters": {
@@ -276,11 +279,12 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        208,
-        832
+        352,
+        -976
       ],
       "id": "35138b00-87e7-4bf4-98e9-f7783cac1b47",
-      "name": "Format Review Output"
+      "name": "Format Review Output",
+      "disabled": true
     },
     {
       "parameters": {
@@ -413,8 +417,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        416,
-        832
+        560,
+        -976
       ],
       "id": "d43af92f-5b7d-4116-a164-efe1a289e5ee",
       "name": "Update Movie Review",
@@ -423,18 +427,20 @@
           "id": "h5INhoXgvfSqfxVB",
           "name": "Google Sheets - Syed Belal"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {},
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        -96,
-        704
+        48,
+        -1104
       ],
       "id": "93c5b736-ece7-4aac-b7e4-0b833e37ff5c",
-      "name": "No Operation"
+      "name": "No Operation",
+      "disabled": true
     },
     {
       "parameters": {
@@ -443,11 +449,12 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        -544,
-        816
+        -400,
+        -992
       ],
       "id": "5ad4a1ee-549b-4fe9-9667-9cbcc743d53e",
-      "name": "Limit"
+      "name": "Limit",
+      "disabled": true
     },
     {
       "parameters": {
@@ -498,6 +505,10 @@
             {
               "name": "page",
               "value": "={{ $json.page }}"
+            },
+            {
+              "name": "region",
+              "value": "us"
             }
           ]
         },
@@ -559,15 +570,15 @@
     },
     {
       "parameters": {
-        "content": "# Phase 1",
-        "height": 1392,
+        "content": "# Phase 1: Getting and Storing Movies data\n\n",
+        "height": 1424,
         "width": 1744,
         "color": 6
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         -944,
-        -768
+        -688
       ],
       "typeVersion": 1,
       "id": "826cd9f7-144b-4d22-83bd-ab5515a03c07",
@@ -582,12 +593,13 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -944,
-        656
+        -800,
+        -1152
       ],
       "typeVersion": 1,
       "id": "17eca644-3d16-49ee-a201-576a013c1896",
-      "name": "Sticky Note2"
+      "name": "Sticky Note2",
+      "disabled": true
     },
     {
       "parameters": {
@@ -613,8 +625,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        -96,
-        832
+        48,
+        -976
       ],
       "id": "85f373d2-752a-4573-af8c-b80a8d3a4c1d",
       "name": "Review Generation",
@@ -623,7 +635,8 @@
           "id": "WTuFB8P3DNjwNZR1",
           "name": "OpenAi - Alishba"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -647,7 +660,7 @@
       "typeVersion": 4.7,
       "position": [
         -464,
-        304
+        336
       ],
       "id": "a521baa1-3b8a-453b-869b-1736cff92233",
       "name": "Read Existing Database",
@@ -668,7 +681,7 @@
       "typeVersion": 2,
       "position": [
         -64,
-        240
+        272
       ],
       "id": "547a4f13-7672-4971-a9ae-1a67e5211bd0",
       "name": "Check for Duplicates",
@@ -680,7 +693,7 @@
       "typeVersion": 3.2,
       "position": [
         -240,
-        240
+        272
       ],
       "id": "7e533a11-a25f-4f23-b614-6b646dee40e4",
       "name": "Merge1",
@@ -716,7 +729,7 @@
       "typeVersion": 2.2,
       "position": [
         112,
-        240
+        272
       ],
       "id": "258b9bd8-5bbc-43aa-b701-1cece3c55e14",
       "name": "if database has data",
@@ -751,7 +764,7 @@
       "typeVersion": 2.2,
       "position": [
         320,
-        224
+        256
       ],
       "id": "55759352-380a-46dc-b2a1-c5be34796a93",
       "name": "If Duplicates?",
@@ -764,7 +777,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2448,
+        -1984,
         448
       ],
       "id": "18435409-7cd3-47ff-bfaa-84edc9a37309",
@@ -814,7 +827,7 @@
         "content": "# Data Loading from TMDb using API",
         "height": 720,
         "width": 992,
-        "color": 5
+        "color": 2
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
@@ -832,7 +845,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2448,
+        -1984,
         656
       ],
       "id": "e4a895b3-d53a-4958-8c6f-d15b5901496a",
@@ -845,7 +858,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2448,
+        -1984,
         240
       ],
       "id": "4ef66277-8731-4643-859b-33550cfa4e10",
@@ -858,7 +871,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2448,
+        -1984,
         -128
       ],
       "id": "040de5fd-bd1a-4ac8-a478-281d3ca17f0a",
@@ -871,7 +884,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2448,
+        -1984,
         32
       ],
       "id": "584f4877-75b5-437e-acbb-e572c40fc55b",
@@ -890,7 +903,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -2768,
+        -2304,
         448
       ],
       "id": "f98a8846-49a1-4c2a-8245-8426e97cb571",
@@ -910,7 +923,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -2800,
+        -2336,
         -64
       ],
       "id": "f0e45739-881f-49e5-b2de-66e0768750da",
@@ -923,7 +936,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2448,
+        -1984,
         -320
       ],
       "id": "3d6e13da-b8e1-45f1-9dcf-ee8e72fdff49",
@@ -936,7 +949,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2448,
+        -1984,
         -480
       ],
       "id": "98987c33-da82-4716-9102-9d776acdbab5",
@@ -956,7 +969,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -2800,
+        -2336,
         -400
       ],
       "id": "b6dc799c-66c3-4a2b-929f-dda1a4e6891e",
@@ -969,7 +982,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2464,
+        -2000,
         -848
       ],
       "id": "6155ba10-1b2b-46e6-aa0f-7f406baadd67",
@@ -982,7 +995,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2464,
+        -2000,
         -688
       ],
       "id": "1bba7225-520d-4ac9-8485-3c1f46720e47",
@@ -1002,7 +1015,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -2816,
+        -2352,
         -768
       ],
       "id": "5f7f7de9-ccbc-41fb-bfbe-867d645fd20e",
@@ -1022,7 +1035,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -2816,
+        -2352,
         -1120
       ],
       "id": "b1519d9f-722d-4a44-8bcf-1e4c2c3e6734",
@@ -1035,7 +1048,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2464,
+        -2000,
         -1200
       ],
       "id": "1d7ac505-fbc6-4fa0-9771-8c96e1aa1799",
@@ -1048,7 +1061,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2464,
+        -2000,
         -1040
       ],
       "id": "8b5de0f2-9c3e-4f90-8918-2335415e8976",
@@ -1060,7 +1073,7 @@
       "typeVersion": 1,
       "position": [
         544,
-        208
+        240
       ],
       "id": "03d1868a-b08e-4a63-9c7f-70ad672d3811",
       "name": "No Operation, do nothing",
@@ -1074,7 +1087,7 @@
       "typeVersion": 2,
       "position": [
         912,
-        -592
+        -512
       ],
       "id": "ddcd1bca-d5fe-4ea3-95b4-5034fa82432e",
       "name": "Clean and Format Movie Data"
@@ -1087,7 +1100,7 @@
       "typeVersion": 2,
       "position": [
         912,
-        -384
+        -304
       ],
       "id": "ef2483e7-84c0-4684-bf50-dc2e15b64490",
       "name": "Clean and Format Movie Data1"
@@ -1100,7 +1113,7 @@
       "typeVersion": 2,
       "position": [
         912,
-        -176
+        -96
       ],
       "id": "79032595-643d-42eb-9025-b188341ae7ec",
       "name": "Clean and Format TV Data"
@@ -1127,7 +1140,7 @@
       "typeVersion": 4.7,
       "position": [
         1072,
-        -96
+        -16
       ],
       "id": "9aa4ddc9-b502-4230-9ed3-b823bb74551c",
       "name": "Read Existing TV Series",
@@ -1161,7 +1174,7 @@
       "typeVersion": 4.7,
       "position": [
         1072,
-        -304
+        -224
       ],
       "id": "b7abdda2-08e8-49f6-992c-58167ce22bd8",
       "name": "Read Existing Movies1",
@@ -1195,7 +1208,7 @@
       "typeVersion": 4.7,
       "position": [
         1072,
-        -512
+        -432
       ],
       "id": "4ccf93c9-5c85-47cf-a04a-04ed5405eb7a",
       "name": "Read Existing Movies",
@@ -1213,7 +1226,7 @@
       "typeVersion": 3.2,
       "position": [
         1280,
-        -160
+        -80
       ],
       "id": "b70d76fd-8782-4c8a-a845-f65b512d644a",
       "name": "Merge2"
@@ -1224,7 +1237,7 @@
       "typeVersion": 3.2,
       "position": [
         1264,
-        -368
+        -288
       ],
       "id": "ce395721-e073-4ec5-8f63-0a00e39ee7f4",
       "name": "Merge3"
@@ -1235,7 +1248,7 @@
       "typeVersion": 3.2,
       "position": [
         1264,
-        -576
+        -496
       ],
       "id": "0e1157d6-9569-4e9c-b46a-06422cbf7a42",
       "name": "Merge4"
@@ -1248,7 +1261,7 @@
       "typeVersion": 2,
       "position": [
         1456,
-        -160
+        -80
       ],
       "id": "2881cc0a-445c-40db-9c4d-b0c5821ede09",
       "name": "Check for Duplicates1"
@@ -1282,7 +1295,7 @@
       "typeVersion": 2.2,
       "position": [
         1904,
-        -176
+        -96
       ],
       "id": "4b28f7e8-1dbb-4107-be4d-f956d2cab6b9",
       "name": "If Duplicates?1"
@@ -1295,7 +1308,7 @@
       "typeVersion": 2,
       "position": [
         1456,
-        -368
+        -288
       ],
       "id": "05ba5257-0fdb-459c-b80d-d9dff5744b88",
       "name": "Check for Duplicates2"
@@ -1329,157 +1342,10 @@
       "typeVersion": 2.2,
       "position": [
         1888,
-        -384
+        -304
       ],
       "id": "3f1fd828-5a48-4058-ba3c-58a4d5dc217e",
       "name": "If Duplicates?2"
-    },
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
-          "mode": "list",
-          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Popular Movies",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "id": "={{ $json.id }}",
-            "Title": "={{ $json.title }}",
-            "Release Date": "={{ $json.release_date }}",
-            "Overview": "={{ $json.overview }}",
-            "Type ": "={{ $json.type }}",
-            "Rating ": "={{ $json.rating }}",
-            "Popularity": "={{ $json.popularity }}",
-            "Poster URL": "={{ $json.poster_url }}"
-          },
-          "matchingColumns": [
-            "id"
-          ],
-          "schema": [
-            {
-              "id": "id",
-              "displayName": "id",
-              "required": false,
-              "defaultMatch": true,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Title",
-              "displayName": "Title",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Overview",
-              "displayName": "Overview",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Type ",
-              "displayName": "Type ",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Release Date",
-              "displayName": "Release Date",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Rating ",
-              "displayName": "Rating ",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Popularity",
-              "displayName": "Popularity",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Poster URL",
-              "displayName": "Poster URL",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Reviwed?",
-              "displayName": "Reviwed?",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Review",
-              "displayName": "Review",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {
-          "useAppend": true
-        }
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.7,
-      "position": [
-        2128,
-        -576
-      ],
-      "id": "a2f0b287-11ae-4c57-85b4-29107446b106",
-      "name": "Save to Database3",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "h5INhoXgvfSqfxVB",
-          "name": "Google Sheets - Syed Belal"
-        }
-      }
     },
     {
       "parameters": {
@@ -1489,7 +1355,7 @@
       "typeVersion": 2,
       "position": [
         1456,
-        -576
+        -496
       ],
       "id": "6f4df53e-52c4-4b13-ad44-172a45a0bec3",
       "name": "Check for Duplicates3"
@@ -1523,7 +1389,7 @@
       "typeVersion": 2.2,
       "position": [
         1888,
-        -592
+        -512
       ],
       "id": "dfe903e3-e2a1-4b19-b7ff-94f569cf342c",
       "name": "If Duplicates?3"
@@ -1534,22 +1400,22 @@
       "typeVersion": 1,
       "position": [
         1888,
-        -768
+        -672
       ],
       "id": "711044b7-8fe2-4acc-aaf9-7b8428d53e63",
       "name": "No Operation, do nothing3"
     },
     {
       "parameters": {
-        "content": "# For Separate Individual Sheets",
+        "content": "# Checking Formatiing and Storing Movie Data",
         "height": 848,
-        "width": 1552,
+        "width": 1504,
         "color": 5
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         848,
-        -784
+        -704
       ],
       "typeVersion": 1,
       "id": "b70735b5-39b3-4c97-94bc-5e48ba4fb4f8",
@@ -1584,7 +1450,7 @@
       "typeVersion": 2.2,
       "position": [
         1664,
-        -576
+        -496
       ],
       "id": "c750e7b2-123b-4034-b5d2-7697f9409dbe",
       "name": "IF (Type)"
@@ -1618,7 +1484,7 @@
       "typeVersion": 2.2,
       "position": [
         1664,
-        -368
+        -288
       ],
       "id": "868cfc4e-74e5-4b93-8e06-40fb16ff99f9",
       "name": "IF (Type)1"
@@ -1652,7 +1518,7 @@
       "typeVersion": 2.2,
       "position": [
         1664,
-        -160
+        -80
       ],
       "id": "28b24afc-e359-4fe2-8bae-66810ebcb8d1",
       "name": "IF (Type)2"
@@ -1660,13 +1526,14 @@
     {
       "parameters": {
         "content": "# For Single Sheet of Data",
-        "height": 464,
-        "width": 1648
+        "height": 496,
+        "width": 1648,
+        "color": 7
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         -896,
-        144
+        176
       ],
       "typeVersion": 1,
       "id": "25c5900c-7c2a-44ae-8f25-705de191455a",
@@ -1743,6 +1610,16 @@
               "canBeUsedToMatch": true
             },
             {
+              "id": "Providers",
+              "displayName": "Providers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
               "id": "Release Date",
               "displayName": "Release Date",
               "required": false,
@@ -1788,13 +1665,24 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "Review",
-              "displayName": "Review",
+              "id": "Customer Review",
+              "displayName": "Customer Review",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Article",
+              "displayName": "Article",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             }
           ],
           "attemptToConvertTypes": false,
@@ -1808,7 +1696,7 @@
       "typeVersion": 4.7,
       "position": [
         2144,
-        -368
+        -288
       ],
       "id": "17ab9e8f-277c-4f25-a854-b9d86c154c75",
       "name": "Save to Database4",
@@ -1839,14 +1727,18 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "id": "={{ $json.id }}",
-            "Title": "={{ $json.title }}",
-            "Release Date": "={{ $json.release_date }}",
-            "Overview": "={{ $json.overview }}",
-            "Type ": "={{ $json.type }}",
-            "Rating ": "={{ $json.rating }}",
-            "Popularity": "={{ $json.popularity }}",
-            "Poster URL": "={{ $json.poster_url }}"
+            "id": "={{ $('If Duplicates?1').item.json.id }}",
+            "Title": "={{ $('If Duplicates?1').item.json.title }}",
+            "Release Date": "={{ $('If Duplicates?1').item.json.release_date }}",
+            "Overview": "={{ $('If Duplicates?1').item.json.overview }} ",
+            "Type ": "={{ $('If Duplicates?1').item.json.type }}",
+            "Rating ": "={{ $('If Duplicates?1').item.json.rating }}",
+            "Popularity": "={{ $('If Duplicates?1').item.json.popularity }}",
+            "Poster URL": "={{ $('If Duplicates?1').item.json.poster_url }}",
+            "Provider": "=",
+            "Reviwed?": "=",
+            "Article": "=",
+            "Customer Review": "="
           },
           "matchingColumns": [
             "id"
@@ -1888,6 +1780,16 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true
+            },
+            {
+              "id": "Provider",
+              "displayName": "Provider",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
               "id": "Release Date",
@@ -1935,13 +1837,24 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "Review",
-              "displayName": "Review",
+              "id": "Customer Review",
+              "displayName": "Customer Review",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Article",
+              "displayName": "Article",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             }
           ],
           "attemptToConvertTypes": false,
@@ -1955,7 +1868,7 @@
       "typeVersion": 4.7,
       "position": [
         2144,
-        -160
+        -80
       ],
       "id": "97a9df77-b7c4-4f3c-958c-f5c21a6999ba",
       "name": "Save to Database5",
@@ -1968,83 +1881,15 @@
     },
     {
       "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
-          "mode": "list",
-          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Popular Movies",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.7,
-      "position": [
-        1088,
-        160
-      ],
-      "id": "4b2b8559-f04d-47c8-956f-ad657770a666",
-      "name": "Get Data",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "h5INhoXgvfSqfxVB",
-          "name": "Google Sheets - Syed Belal"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "jsCode": "// Get all incoming items\nconst items = $input.all();\n\n// Sort items by \"Popularity\" descending\nitems.sort((a, b) => {\n  const popA = Number(a.json.Popularity) || 0;\n  const popB = Number(b.json.Popularity) || 0;\n  return popB - popA;\n});\n\n// Return the sorted items\nreturn items;\n"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1296,
-        160
-      ],
-      "id": "c53e0c00-d166-4e5e-b782-7d2430c25607",
-      "name": "sort by Popularity",
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "rule": {
-          "interval": [
-            {
-              "triggerAtHour": 9
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
-      "position": [
-        880,
-        160
-      ],
-      "id": "23f64795-dc45-4623-bd4b-0347bee2e5f5",
-      "name": "Sort Initiator",
-      "disabled": true
-    },
-    {
-      "parameters": {
         "content": "# Initiator Setup\n- ## Triggers \n- ## Query Page limit handling",
-        "height": 2256,
+        "height": 2240,
         "width": 720,
         "color": 3
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -2896,
-        -1392
+        -2432,
+        -1376
       ],
       "typeVersion": 1,
       "id": "3c297ae5-6777-4202-a10f-d963f92f9d53",
@@ -2052,25 +1897,6 @@
     },
     {
       "parameters": {
-        "rule": {
-          "interval": [
-            {
-              "daysInterval": 2
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.2,
-      "position": [
-        -1056,
-        1616
-      ],
-      "id": "0a543ef7-ba47-40c3-9d6e-1be107e3e7eb",
-      "name": "Phase 2 - Initiator1"
-    },
-    {
-      "parameters": {
         "documentId": {
           "__rl": true,
           "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
@@ -2085,13 +1911,20 @@
           "cachedResultName": "Popular Movies",
           "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
         },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Reviwed?"
+            }
+          ]
+        },
         "options": {}
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -736,
-        1280
+        -768,
+        944
       ],
       "id": "63fecb20-87fe-45b2-bbc3-e65be50f19d8",
       "name": "Read Movie Data1",
@@ -2109,8 +1942,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -320,
-        1280
+        -352,
+        944
       ],
       "id": "7a43b82c-2844-4134-bbac-048e74d9c033",
       "name": "Splot in Batches1"
@@ -2138,8 +1971,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        208,
-        1296
+        384,
+        960
       ],
       "id": "62a2ba2f-23bc-42c6-b11c-e108dafcf792",
       "name": "Format Review Output1"
@@ -2165,8 +1998,8 @@
           "mappingMode": "defineBelow",
           "value": {
             "Reviwed?": "Yes",
-            "Review": "={{ $json.review }}",
-            "id": "={{ $json.id }}"
+            "id": "={{ $json.id }}",
+            "Customer Review": "={{ $json.review}}"
           },
           "matchingColumns": [
             "id"
@@ -2208,6 +2041,16 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true
+            },
+            {
+              "id": "Providers",
+              "displayName": "Providers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
               "id": "Release Date",
@@ -2257,13 +2100,24 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "Review",
-              "displayName": "Review",
+              "id": "Customer Review",
+              "displayName": "Customer Review",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Article",
+              "displayName": "Article",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
               "id": "row_number",
@@ -2285,8 +2139,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        416,
-        1296
+        592,
+        960
       ],
       "id": "49da1cdd-b24f-49f0-a7ce-91af50a32edf",
       "name": "Update Movie Review1",
@@ -2302,8 +2156,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        -96,
-        1168
+        112,
+        832
       ],
       "id": "9618196f-0e34-43b2-93d7-db49686bf075",
       "name": "No Operation1"
@@ -2315,23 +2169,23 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        -544,
-        1280
+        -576,
+        944
       ],
       "id": "bfe5bd15-2445-4653-b764-d5d01ece4139",
       "name": "Limit1"
     },
     {
       "parameters": {
-        "content": "# Phase 2: For Separate Sheets\n",
+        "content": "# Phase 2: Customer Review Generator",
         "height": 1104,
-        "width": 1584,
-        "color": 4
+        "width": 1744,
+        "color": 5
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         -944,
-        1120
+        784
       ],
       "typeVersion": 1,
       "id": "453c70c0-c14f-451d-ad98-8a579080224f",
@@ -2348,11 +2202,11 @@
         "messages": {
           "values": [
             {
-              "content": "You are a professional movie reviewer who writes short, engaging, spoiler-free reviews.",
+              "content": "=You are a professional entertainment critic who writes short, authentic, and spoiler-free reviews about movies and TV series. \nYour reviews sound like genuine audience opinions rather than promotional summaries. \nThey may express enthusiasm, disappointment, or balanced opinions — but always feel natural and conversational. \nEach review should be 2–3 sentences long, with a distinct tone depending on the type of title and its rating. \nAvoid repeating the overview or plot. Focus on personal impressions, acting, direction, pacing, or emotion.\n\nWrite a 2–3 sentence review for the following:\n\nTitle: {{ $('Splot in Batches1').item.json.Title }}\nOverview: {{ $('Splot in Batches1').item.json.Overview }}\nType: {{ $('Splot in Batches1').item.json['Type '] }}  // e.g., Movie or Series\nRelease Date: {{ $('Splot in Batches1').item.json['Release Date'] }}\nRating: {{ $('Splot in Batches1').item.json['Rating '] }}\nCategory: {{ $json.Category }}  // e.g., Popular, Upcoming\nPoster URL: {{ $('Splot in Batches1').item.json['Poster URL'] }}\n",
               "role": "system"
             },
             {
-              "content": "=Write a 2–3 sentence review for the following:\n\\nTitle: {{ $json.Title }}\\nOverview: {{$json.Overview}}\\nRelease Date: {{$json['Release Date']}}\\nRating: {{ $json['Rating '] }}"
+              "content": "=Generate a short customer-style review based on the given details. \nMake it feel personal and natural, like something a real viewer would post online after watching (or anticipating) the title."
             }
           ]
         },
@@ -2361,8 +2215,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        -96,
-        1296
+        80,
+        960
       ],
       "id": "769c90ce-9aac-4fa4-a020-277a03d10859",
       "name": "Review Generation1",
@@ -2389,13 +2243,20 @@
           "cachedResultName": "Upcoming Movies",
           "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1660865768"
         },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Reviwed?"
+            }
+          ]
+        },
         "options": {}
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -736,
-        1616
+        -768,
+        1280
       ],
       "id": "1ee999fc-ef1e-4abe-93f3-701dcfde6ba2",
       "name": "Read Movie Data2",
@@ -2413,8 +2274,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -304,
-        1616
+        -336,
+        1280
       ],
       "id": "57999039-59b5-442c-b707-870a9feeb95f",
       "name": "Splot in Batches2"
@@ -2442,8 +2303,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        224,
-        1632
+        400,
+        1296
       ],
       "id": "465f6f7e-caad-4831-8674-afaa04020e44",
       "name": "Format Review Output2"
@@ -2469,8 +2330,8 @@
           "mappingMode": "defineBelow",
           "value": {
             "Reviwed?": "Yes",
-            "Review": "={{ $json.review }}",
-            "id": "={{ $json.id }}"
+            "id": "={{ $json.id }}",
+            "Customer Review": "={{ $json.review}}"
           },
           "matchingColumns": [
             "id"
@@ -2512,6 +2373,16 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true
+            },
+            {
+              "id": "Providers",
+              "displayName": "Providers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
               "id": "Release Date",
@@ -2561,13 +2432,24 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "Review",
-              "displayName": "Review",
+              "id": "Customer Review",
+              "displayName": "Customer Review",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Article",
+              "displayName": "Article",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
               "id": "row_number",
@@ -2589,8 +2471,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        432,
-        1632
+        608,
+        1296
       ],
       "id": "d3959c2c-e733-4932-ba86-148accbd2c71",
       "name": "Update Movie Review2",
@@ -2606,8 +2488,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        -80,
-        1504
+        96,
+        1168
       ],
       "id": "5fd45ab0-a07b-4065-8118-34debf08f5fd",
       "name": "No Operation2"
@@ -2619,8 +2501,8 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        -528,
-        1616
+        -560,
+        1280
       ],
       "id": "7ae2ce9f-c2dc-4f1f-b366-557de1122083",
       "name": "Limit2"
@@ -2636,11 +2518,11 @@
         "messages": {
           "values": [
             {
-              "content": "You are a professional movie reviewer who writes short, engaging, spoiler-free reviews.",
+              "content": "=You are a professional entertainment critic who writes short, authentic, and spoiler-free reviews about movies and TV series. \nYour reviews sound like genuine audience opinions rather than promotional summaries. \nThey may express enthusiasm, disappointment, or balanced opinions — but always feel natural and conversational. \nEach review should be 2–3 sentences long, with a distinct tone depending on the type of title and its rating. \nAvoid repeating the overview or plot. Focus on personal impressions, acting, direction, pacing, or emotion.\n\nWrite a 2–3 sentence review for the following:\n\nTitle: {{ $('Splot in Batches2').item.json.Title }}\nOverview: {{ $('Splot in Batches2').item.json.Overview }}\nType: {{ $('Splot in Batches2').item.json['Type '] }}  // e.g., Movie or Series\nRelease Date: {{ $('Splot in Batches2').item.json['Release Date'] }}\nRating: {{ $('Splot in Batches2').item.json['Rating '] }}\nCategory: {{ $json.Category }}  // e.g., Popular, Upcoming\nPoster URL: {{ $('Splot in Batches2').item.json['Poster URL'] }}\n",
               "role": "system"
             },
             {
-              "content": "=Write a 2–3 sentence review for the following:\n\\nTitle: {{ $json.Title }}\\nOverview: {{$json.Overview}}\\nRelease Date: {{$json['Release Date']}}\\nRating: {{ $json['Rating '] }}"
+              "content": "=Generate a short customer-style review based on the given details. \nMake it feel personal and natural, like something a real viewer would post online after watching (or anticipating) the title."
             }
           ]
         },
@@ -2649,8 +2531,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        -80,
-        1632
+        96,
+        1296
       ],
       "id": "4bc4cd45-7464-4ede-95eb-b754eb3ca711",
       "name": "Review Generation2",
@@ -2677,13 +2559,20 @@
           "cachedResultName": "Popular TV Series",
           "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1779211863"
         },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Reviwed?"
+            }
+          ]
+        },
         "options": {}
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -752,
-        1952
+        -784,
+        1616
       ],
       "id": "8d1e32ea-42f3-40ce-bbc7-0d61cbe34aa9",
       "name": "Read Movie Data3",
@@ -2701,8 +2590,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        -320,
-        1952
+        -352,
+        1616
       ],
       "id": "fc905f79-fe87-4019-be0a-32fb4d9c6fba",
       "name": "Splot in Batches3"
@@ -2730,8 +2619,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        208,
-        1968
+        384,
+        1632
       ],
       "id": "270e438e-64ef-44b9-93ca-778dcc5709a1",
       "name": "Format Review Output3"
@@ -2757,8 +2646,8 @@
           "mappingMode": "defineBelow",
           "value": {
             "Reviwed?": "Yes",
-            "Review": "={{ $json.review }}",
-            "id": "={{ $json.id }}"
+            "id": "={{ $json.id }}",
+            "Customer Review": "={{ $json.review}}"
           },
           "matchingColumns": [
             "id"
@@ -2800,6 +2689,16 @@
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true
+            },
+            {
+              "id": "Provider",
+              "displayName": "Provider",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             },
             {
               "id": "Release Date",
@@ -2849,8 +2748,2190 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "Review",
-              "displayName": "Review",
+              "id": "Customer Review",
+              "displayName": "Customer Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Article",
+              "displayName": "Article",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        592,
+        1632
+      ],
+      "id": "8627cab9-30ff-461a-aad4-6840b0670e65",
+      "name": "Update Movie Review3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        80,
+        1504
+      ],
+      "id": "04c704e7-75f9-4443-a8ba-ef865aaf6776",
+      "name": "No Operation3"
+    },
+    {
+      "parameters": {
+        "maxItems": 2
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        1616
+      ],
+      "id": "050fac27-3149-4775-a12f-1adf595ec49c",
+      "name": "Limit3"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a professional entertainment critic who writes short, authentic, and spoiler-free reviews about movies and TV series. \nYour reviews sound like genuine audience opinions rather than promotional summaries. \nThey may express enthusiasm, disappointment, or balanced opinions — but always feel natural and conversational. \nEach review should be 2–3 sentences long, with a distinct tone depending on the type of title and its rating. \nAvoid repeating the overview or plot. Focus on personal impressions, acting, direction, pacing, or emotion.\n\nWrite a 2–3 sentence review for the following:\n\nTitle: {{ $('Splot in Batches3').item.json.Title }}\nOverview: {{ $('Splot in Batches3').item.json.Overview }}\nType: {{ $('Splot in Batches3').item.json['Type '] }}  // e.g., Movie or Series\nRelease Date: {{ $('Splot in Batches3').item.json['Release Date'] }}\nRating: {{ $('Splot in Batches3').item.json['Rating '] }}\nCategory: {{ $json.Category }}  // e.g., Popular, Upcoming\nPoster URL: {{ $('Splot in Batches3').item.json['Poster URL'] }}\n",
+              "role": "system"
+            },
+            {
+              "content": "=Generate a short customer-style review based on the given details. \nMake it feel personal and natural, like something a real viewer would post online after watching (or anticipating) the title."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        80,
+        1632
+      ],
+      "id": "21de2b24-514d-4bf1-944e-5a1a7120b854",
+      "name": "Review Generation3",
+      "credentials": {
+        "openAiApi": {
+          "id": "WTuFB8P3DNjwNZR1",
+          "name": "OpenAi - Alishba"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1760,
+        320
+      ],
+      "id": "0920626a-c5df-4325-b619-330ac6e13c3f",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Popular Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('If Duplicates?3').item.json.id }}",
+            "Title": "={{ $('If Duplicates?3').item.json.title }}",
+            "Release Date": "={{ $('If Duplicates?3').item.json.release_date }}",
+            "Overview": "={{ $('If Duplicates?3').item.json.overview }}",
+            "Type ": "={{ $('If Duplicates?3').item.json.type }}",
+            "Rating ": "={{ $('If Duplicates?3').item.json.rating }}",
+            "Popularity": "={{ $('If Duplicates?3').item.json.popularity }}",
+            "Poster URL": "={{ $('If Duplicates?3').item.json.poster_url }}",
+            "Providers": "="
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Providers",
+              "displayName": "Providers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Review",
+              "displayName": "Customer Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Article",
+              "displayName": "Article",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2144,
+        -496
+      ],
+      "id": "c11179ca-6052-427a-bbc0-e80453d2e6b2",
+      "name": "Save to Database3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.themoviedb.org/3/movie/{{ $json.id }}/watch/providers",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMTcyYzIzYjU2MmJjY2YzYzNhYzI0OTRmZDJmODU1NCIsIm5iZiI6MTc2MjI2NjQxOS42NTIsInN1YiI6IjY5MGEwZDMzYWNiMmJjMzBmMDcwY2M0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I5TEpU04udXCe4MP2dJK6fxM6S-nvUmKhYyeOeMK-ZM"
+            },
+            {
+              "name": "accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1984,
+        336
+      ],
+      "id": "435cf6ee-849f-4c50-bdd1-05f8d42b5e3f",
+      "name": "Fetch Movie Provider",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get input from previous node (usually an HTTP Request)\nconst input = items[0].json;\n\n// Ensure we always have an array to loop through\nconst data = Array.isArray(input) ? input : [input];\n\nconst providerSet = new Set();\n\n// Loop through each movie entry\nfor (const movie of data) {\n  const results = movie.results || {};\n\n  for (const region in results) {\n    const regionData = results[region];\n\n    // Check all possible provider types\n    const providerTypes = [\"ads\", \"flatrate\", \"rent\", \"buy\"];\n    for (const type of providerTypes) {\n      if (Array.isArray(regionData[type])) {\n        regionData[type].forEach(provider => {\n          if (provider.provider_name) {\n            providerSet.add(provider.provider_name.trim());\n          }\n        });\n      }\n    }\n  }\n}\n\n// Join all provider names with commas\nconst providerList = Array.from(providerSet).join(\", \");\n\n// Return as a single n8n item\nreturn [\n  {\n    json: {\n      provider_name: providerList\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2224,
+        320
+      ],
+      "id": "abb5fe36-4698-4634-8b73-095b58dae6fd",
+      "name": "Extract Provider's Only"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.themoviedb.org/3/tv/{{ $json.id }}/watch/providers",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMTcyYzIzYjU2MmJjY2YzYzNhYzI0OTRmZDJmODU1NCIsIm5iZiI6MTc2MjI2NjQxOS42NTIsInN1YiI6IjY5MGEwZDMzYWNiMmJjMzBmMDcwY2M0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I5TEpU04udXCe4MP2dJK6fxM6S-nvUmKhYyeOeMK-ZM"
+            },
+            {
+              "name": "accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1984,
+        848
+      ],
+      "id": "5f7e9082-ce81-40ea-95c1-9ad1d1dbe3aa",
+      "name": "Fetch Series Provider",
+      "alwaysOutputData": false,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract the actual input data (array of movie objects)\nconst input = items[0].json;\n\n// Ensure it's always an array\nconst data = Array.isArray(input) ? input : [input];\n\nconst providerSet = new Set();\n\nfor (const movie of data) {\n  const results = movie.results || {};\n  for (const region in results) {\n    const regionData = results[region];\n\n    // Check all possible provider categories\n    const providerTypes = [\"ads\", \"flatrate\", \"rent\", \"buy\"];\n    for (const type of providerTypes) {\n      if (Array.isArray(regionData[type])) {\n        regionData[type].forEach(provider => {\n          if (provider.provider_name) {\n            providerSet.add(provider.provider_name.trim());\n          }\n        });\n      }\n    }\n  }\n}\n\n// Convert to n8n item format\nreturn Array.from(providerSet).map(name => ({\n  json: { provider_name: name }\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2240,
+        832
+      ],
+      "id": "e62c5829-d817-4d15-8807-64ada20ebf5d",
+      "name": "Extract Provider's Only2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1776,
+        832
+      ],
+      "id": "b4bdb80e-386a-47ee-9776-a93303219bca",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Popular Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Providers"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1376,
+        320
+      ],
+      "id": "3cb3db52-0d86-4117-be5c-b72d403fc51f",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1779211863,
+          "mode": "list",
+          "cachedResultName": "Popular TV Series",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1779211863"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Provider"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1376,
+        832
+      ],
+      "id": "053a3102-10b1-4aee-8d80-0c14cef545da",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1779211863,
+          "mode": "list",
+          "cachedResultName": "Popular TV Series",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1779211863"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Provider": "={{ $json.provider_name || \"Unavailable\" }}",
+            "id": "={{ $('Loop Over Items1').item.json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Provider",
+              "displayName": "Provider",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Review",
+              "displayName": "Customer Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Article",
+              "displayName": "Article",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2448,
+        832
+      ],
+      "id": "88c34b97-ae0b-4e49-84b8-de7ff1ead21b",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Popular Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Loop Over Items').item.json.id }}",
+            "Providers": "={{ $json.provider_name || \"Unavailable\" }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Providers",
+              "displayName": "Providers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Review",
+              "displayName": "Customer Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Article",
+              "displayName": "Article",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2432,
+        320
+      ],
+      "id": "fb662847-aea8-4faa-96e3-c50b9df9ccd6",
+      "name": "Update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1760,
+        576
+      ],
+      "id": "d5a21c56-9505-4230-8401-fcdaeefd4a40",
+      "name": "Loop Over Items2"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.themoviedb.org/3/movie/{{ $json.id }}/watch/providers",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMTcyYzIzYjU2MmJjY2YzYzNhYzI0OTRmZDJmODU1NCIsIm5iZiI6MTc2MjI2NjQxOS42NTIsInN1YiI6IjY5MGEwZDMzYWNiMmJjMzBmMDcwY2M0NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I5TEpU04udXCe4MP2dJK6fxM6S-nvUmKhYyeOeMK-ZM"
+            },
+            {
+              "name": "accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1984,
+        592
+      ],
+      "id": "45faeaba-7743-46e4-88c3-c2e2779c71be",
+      "name": "Fetch Movie Provider2",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get input from previous node (usually an HTTP Request)\nconst input = items[0].json;\n\n// Ensure we always have an array to loop through\nconst data = Array.isArray(input) ? input : [input];\n\nconst providerSet = new Set();\n\n// Loop through each movie entry\nfor (const movie of data) {\n  const results = movie.results || {};\n\n  for (const region in results) {\n    const regionData = results[region];\n\n    // Check all possible provider types\n    const providerTypes = [\"ads\", \"flatrate\", \"rent\", \"buy\"];\n    for (const type of providerTypes) {\n      if (Array.isArray(regionData[type])) {\n        regionData[type].forEach(provider => {\n          if (provider.provider_name) {\n            providerSet.add(provider.provider_name.trim());\n          }\n        });\n      }\n    }\n  }\n}\n\n// Join all provider names with commas\nconst providerList = Array.from(providerSet).join(\", \");\n\n// Return as a single n8n item\nreturn [\n  {\n    json: {\n      provider_name: providerList\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2224,
+        576
+      ],
+      "id": "f5e09379-8f1b-4a71-a3b9-3503b76febd3",
+      "name": "Extract Provider's Only3"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1660865768,
+          "mode": "list",
+          "cachedResultName": "Upcoming Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1660865768"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Providers"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1376,
+        576
+      ],
+      "id": "fe912f51-d390-4a6e-a4af-f4a771a67408",
+      "name": "Get row(s) in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1660865768,
+          "mode": "list",
+          "cachedResultName": "Upcoming Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1660865768"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Loop Over Items2').item.json.id }}",
+            "Providers": "={{ $json.provider_name || \"Unavailable\" }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Providers",
+              "displayName": "Providers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Review",
+              "displayName": "Customer Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Article",
+              "displayName": "Article",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2432,
+        576
+      ],
+      "id": "98cd5445-88e8-4c28-9da3-ea5d5003d728",
+      "name": "Update row in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "maxItems": 100
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1584,
+        320
+      ],
+      "id": "7422a32a-a0a8-41db-8c22-4c1449eddbb2",
+      "name": "Limit4"
+    },
+    {
+      "parameters": {
+        "maxItems": 100
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1584,
+        576
+      ],
+      "id": "27a3fb27-1c57-4d71-98c7-f665e9003043",
+      "name": "Limit5"
+    },
+    {
+      "parameters": {
+        "maxItems": 100
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1584,
+        832
+      ],
+      "id": "b050eefc-4f68-40a6-9a5e-64b322addb97",
+      "name": "Limit6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "272fef26-bfdc-4416-8207-7264cfb3aa15",
+              "leftValue": "={{ $json.Providers }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2640,
+        928
+      ],
+      "id": "6509bbfe-98c0-40a6-9d03-a1cf14fa351a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e367ff05-9937-4884-a573-2b07da409c68",
+              "name": "provider_name",
+              "value": "noData",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2848,
+        912
+      ],
+      "id": "ff04fccf-c313-4ed2-a945-5dadb19e7eac",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "272fef26-bfdc-4416-8207-7264cfb3aa15",
+              "leftValue": "={{ $json.Providers }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2624,
+        656
+      ],
+      "id": "ec8ad592-d121-4c5d-a959-4fc3878acbee",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e367ff05-9937-4884-a573-2b07da409c68",
+              "name": "provider_name",
+              "value": "noData",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2832,
+        640
+      ],
+      "id": "51033fce-cd74-4415-bf90-e9d41cf2e366",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "272fef26-bfdc-4416-8207-7264cfb3aa15",
+              "leftValue": "={{ $json.Providers }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2608,
+        400
+      ],
+      "id": "c63cb84f-c6c0-4474-8246-17c2b8a039a7",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e367ff05-9937-4884-a573-2b07da409c68",
+              "name": "provider_name",
+              "value": "noData",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2816,
+        384
+      ],
+      "id": "fc574826-9ead-4406-b7e3-018b1bfe2b0f",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "content": "# Fetch Movie/Series Providers\n",
+        "height": 928,
+        "width": 2272,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        848,
+        192
+      ],
+      "typeVersion": 1,
+      "id": "165eb1db-a353-4288-bf61-45d30e6fa2cd",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2ac29db4-8e1a-46e4-b927-f1824be1c987",
+              "name": "Category",
+              "value": "Popular",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -144,
+        960
+      ],
+      "id": "898831c9-71d5-4285-99a2-b36c8882c031",
+      "name": "setCategory"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "117676a3-010a-44b5-a6ee-82ac1be5725c",
+              "name": "Category",
+              "value": "Upcoming",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -128,
+        1296
+      ],
+      "id": "88bb32a0-0618-4977-90c4-f8385e666ba4",
+      "name": "setCategory1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "35a20e68-ed3c-4203-9b71-5cb16be21740",
+              "name": "Category",
+              "value": "Popular",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -128,
+        1632
+      ],
+      "id": "ab04eedc-3778-496d-b448-7412917e6d85",
+      "name": "setCategory2"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Popular Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Article"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1264,
+        1376
+      ],
+      "id": "53529e4a-8dac-4d3e-b475-2f93065356b2",
+      "name": "Read Movie Data4",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1680,
+        1376
+      ],
+      "id": "cb1f1ade-de58-4122-837e-da9cb27984c5",
+      "name": "Splot in Batches4"
+    },
+    {
+      "parameters": {
+        "maxItems": 2
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1456,
+        1376
+      ],
+      "id": "5c946513-54cf-43be-b25d-20d186887f22",
+      "name": "Limit7"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1660865768,
+          "mode": "list",
+          "cachedResultName": "Upcoming Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1660865768"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Article"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1264,
+        1712
+      ],
+      "id": "12c79ba2-6723-49ed-927c-9e380b29a322",
+      "name": "Read Movie Data5",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1696,
+        1712
+      ],
+      "id": "b9af6733-a266-4f98-b905-514018261ba6",
+      "name": "Splot in Batches5"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2032,
+        1200
+      ],
+      "id": "2ec696f6-525f-47ab-bfe0-6f665368a0ae",
+      "name": "No Operation4"
+    },
+    {
+      "parameters": {
+        "maxItems": 2
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1472,
+        1712
+      ],
+      "id": "77739842-f0d3-4dce-89dc-ec1eb84c84a8",
+      "name": "Limit8"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a professional entertainment journalist and reviewer. \nWrite a full-length review article (around 3–5 paragraphs, 300–500 words) about the given movie or TV series.\nThe article should sound as if it’s summarizing a range of audience opinions and critical impressions — \nhighlighting both strengths and weaknesses naturally, without spoilers.\n\nThe tone should be authentic, balanced, and conversational — not promotional or robotic. \nMention acting, direction, pacing, visuals, or story tone where relevant. \nIf the title is an upcoming release, focus more on anticipation, cast expectations, and potential audience appeal.\n\nWrite the article based on the following information:\n\nTitle: {{ $('Splot in Batches5').item.json.Title }}\nOverview: {{ $('Splot in Batches5').item.json.Overview }}\nType: {{ $('Splot in Batches5').item.json['Type '] }}  // e.g., Movie or Series\nRelease Date: {{ $('Splot in Batches5').item.json['Release Date'] }}\nRating: {{ $('Splot in Batches5').item.json['Rating '] }}\nCategory: {{ $json.Category }}  // e.g., Popular, Upcoming\nPoster URL: {{ $('Splot in Batches5').item.json['Poster URL'] }}\n",
+              "role": "system"
+            },
+            {
+              "content": "=Write a cohesive and natural review article for the given title.\nInclude multiple perspectives — as if drawn from real audience reactions and critic summaries.\nKeep it spoiler-free and engaging."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2128,
+        1728
+      ],
+      "id": "e9c9fe25-ef12-43e5-a882-365637557bbf",
+      "name": "Review Generation5",
+      "credentials": {
+        "openAiApi": {
+          "id": "WTuFB8P3DNjwNZR1",
+          "name": "OpenAi - Alishba"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1779211863,
+          "mode": "list",
+          "cachedResultName": "Popular TV Series",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1779211863"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Article"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1264,
+        2048
+      ],
+      "id": "de742bed-8dd6-4029-a07e-469d5c37867e",
+      "name": "Read Movie Data6",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1680,
+        2048
+      ],
+      "id": "70648e7b-1475-470c-8f7f-701bc64a2736",
+      "name": "Splot in Batches6"
+    },
+    {
+      "parameters": {
+        "maxItems": 2
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1456,
+        2048
+      ],
+      "id": "e718cd08-eba5-4280-b66f-d36bce7518ed",
+      "name": "Limit9"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a professional entertainment journalist and reviewer. \nWrite a full-length review article (around 3–5 paragraphs, 300–500 words) about the given movie or TV series.\nThe article should sound as if it’s summarizing a range of audience opinions and critical impressions — \nhighlighting both strengths and weaknesses naturally, without spoilers.\n\nThe tone should be authentic, balanced, and conversational — not promotional or robotic. \nMention acting, direction, pacing, visuals, or story tone where relevant. \nIf the title is an upcoming release, focus more on anticipation, cast expectations, and potential audience appeal.\n\nWrite the article based on the following information:\n\nTitle: {{ $('Splot in Batches6').item.json.Title }}\nOverview: {{ $('Splot in Batches6').item.json.Overview }}\nType: {{ $('Splot in Batches6').item.json['Type '] }}  // e.g., Movie or Series\nRelease Date: {{ $('Splot in Batches6').item.json['Release Date'] }}\nRating: {{ $('Splot in Batches6').item.json['Rating '] }}\nCategory: {{ $json.Category }}  // e.g., Popular, Upcoming\nPoster URL: {{ $('Splot in Batches6').item.json['Poster URL'] }}\n",
+              "role": "system"
+            },
+            {
+              "content": "=Write a cohesive and natural review article for the given title.\nInclude multiple perspectives — as if drawn from real audience reactions and critic summaries.\nKeep it spoiler-free and engaging."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2128,
+        2064
+      ],
+      "id": "8890b740-1bdc-4d9f-9996-82d4d2a719b6",
+      "name": "Review Generation6",
+      "credentials": {
+        "openAiApi": {
+          "id": "WTuFB8P3DNjwNZR1",
+          "name": "OpenAi - Alishba"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2ac29db4-8e1a-46e4-b927-f1824be1c987",
+              "name": "Category",
+              "value": "Popular",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1888,
+        1392
+      ],
+      "id": "1ade5a84-fc16-405e-98c4-1c37c687cd1a",
+      "name": "setCategory3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "117676a3-010a-44b5-a6ee-82ac1be5725c",
+              "name": "Category",
+              "value": "Upcoming",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1904,
+        1728
+      ],
+      "id": "2c35e91e-a60b-474b-8237-8f5e16337724",
+      "name": "setCategory4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "35a20e68-ed3c-4203-9b71-5cb16be21740",
+              "name": "Category",
+              "value": "Popular",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1904,
+        2064
+      ],
+      "id": "13bf5fd0-b595-433c-b05e-29773e7fce3f",
+      "name": "setCategory5"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "daysInterval": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        976,
+        1712
+      ],
+      "id": "b295caab-e24e-4130-a992-f48be0bc7e46",
+      "name": "Phase 2 - Article"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "daysInterval": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1056,
+        1280
+      ],
+      "id": "0a543ef7-ba47-40c3-9d6e-1be107e3e7eb",
+      "name": "Phase 2 - Customer Review"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a professional entertainment journalist and reviewer. \nWrite a full-length review article (around 3–5 paragraphs, 300–500 words) about the given movie or TV series.\nThe article should sound as if it’s summarizing a range of audience opinions and critical impressions — \nhighlighting both strengths and weaknesses naturally, without spoilers.\n\nThe tone should be authentic, balanced, and conversational — not promotional or robotic. \nMention acting, direction, pacing, visuals, or story tone where relevant. \nIf the title is an upcoming release, focus more on anticipation, cast expectations, and potential audience appeal.\n\nWrite the article based on the following information:\n\nTitle: {{ $('Splot in Batches4').item.json.Title }}\nOverview: {{ $('Splot in Batches4').item.json.Overview }}\nType: {{ $('Splot in Batches4').item.json['Type '] }}  // e.g., Movie or Series\nRelease Date: {{ $('Splot in Batches4').item.json['Release Date'] }}\nRating: {{ $('Splot in Batches4').item.json['Rating '] }}\nCategory: {{ $json.Category }}  // e.g., Popular, Upcoming\nPoster URL: {{ $('Splot in Batches4').item.json['Poster URL'] }}\n",
+              "role": "system"
+            },
+            {
+              "content": "=Write a cohesive and natural review article for the given title.\nInclude multiple perspectives — as if drawn from real audience reactions and critic summaries.\nKeep it spoiler-free and engaging."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2112,
+        1392
+      ],
+      "id": "54b8cf2f-5fab-43b8-a091-c3e7961d06b0",
+      "name": "Article Generation",
+      "credentials": {
+        "openAiApi": {
+          "id": "WTuFB8P3DNjwNZR1",
+          "name": "OpenAi - Alishba"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8b2f5e80-ae45-4599-829b-57803a25c72c",
+              "name": "id",
+              "value": "={{ $('Read Movie Data4').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "f8b61cfe-a445-47fd-9f69-a393a208944d",
+              "name": "article",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2512,
+        1392
+      ],
+      "id": "e4944a72-7fd1-47fa-8805-a7fedd23f077",
+      "name": "setOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8b2f5e80-ae45-4599-829b-57803a25c72c",
+              "name": "id",
+              "value": "={{ $('Read Movie Data5').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "f8b61cfe-a445-47fd-9f69-a393a208944d",
+              "name": "article",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2512,
+        1728
+      ],
+      "id": "f26f1fe8-abeb-41f7-9b4a-b997568ff33c",
+      "name": "setOutput1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8b2f5e80-ae45-4599-829b-57803a25c72c",
+              "name": "id",
+              "value": "={{ $('Read Movie Data6').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "f8b61cfe-a445-47fd-9f69-a393a208944d",
+              "name": "article",
+              "value": "={{ $json.message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2528,
+        2064
+      ],
+      "id": "7a658bee-6abc-4480-8140-f51e5f680249",
+      "name": "setOutput2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Popular Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Reviwed?": "",
+            "id": "={{ $json.id }}",
+            "Article": "={{ $json.article }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Providers",
+              "displayName": "Providers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Review",
+              "displayName": "Customer Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Article",
+              "displayName": "Article",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2752,
+        1392
+      ],
+      "id": "2377759b-36c6-4d14-8aae-97bea518a31a",
+      "name": "Update Movie Article",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
+          "mode": "list",
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1660865768,
+          "mode": "list",
+          "cachedResultName": "Upcoming Movies",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1660865768"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id}}",
+            "Article": "={{ $json.article }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Providers",
+              "displayName": "Providers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Review",
+              "displayName": "Customer Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Article",
+              "displayName": "Article",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -2877,11 +4958,11 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        416,
-        1968
+        2752,
+        1728
       ],
-      "id": "8627cab9-30ff-461a-aad4-6840b0670e65",
-      "name": "Update Movie Review3",
+      "id": "d21e5f09-2cce-4a7d-92a0-7e77b2c452a8",
+      "name": "Update Movie Article1",
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "h5INhoXgvfSqfxVB",
@@ -2890,64 +4971,207 @@
       }
     },
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        -96,
-        1840
-      ],
-      "id": "04c704e7-75f9-4443-a8ba-ef865aaf6776",
-      "name": "No Operation3"
-    },
-    {
       "parameters": {
-        "maxItems": 2
-      },
-      "type": "n8n-nodes-base.limit",
-      "typeVersion": 1,
-      "position": [
-        -544,
-        1952
-      ],
-      "id": "050fac27-3149-4775-a12f-1adf595ec49c",
-      "name": "Limit3"
-    },
-    {
-      "parameters": {
-        "modelId": {
+        "operation": "update",
+        "documentId": {
           "__rl": true,
-          "value": "gpt-4.1-mini",
+          "value": "1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU",
           "mode": "list",
-          "cachedResultName": "GPT-4.1-MINI"
+          "cachedResultName": "Movie Analyzer AI(Database 2.0)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit?usp=drivesdk"
         },
-        "messages": {
-          "values": [
+        "sheetName": {
+          "__rl": true,
+          "value": 1779211863,
+          "mode": "list",
+          "cachedResultName": "Popular TV Series",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1DztDZVFUlt4TitoUZRbCp8lwUdoMzkOEbOrkJhdCamU/edit#gid=1779211863"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id}}",
+            "Article": "={{ $json.article }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
             {
-              "content": "You are a professional movie reviewer who writes short, engaging, spoiler-free reviews.",
-              "role": "system"
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
             },
             {
-              "content": "=Write a 2–3 sentence review for the following:\n\\nTitle: {{ $json.Title }}\\nOverview: {{$json.Overview}}\\nRelease Date: {{$json['Release Date']}}\\nRating: {{ $json['Rating '] }}"
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overview",
+              "displayName": "Overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type ",
+              "displayName": "Type ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Provider",
+              "displayName": "Provider",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Release Date",
+              "displayName": "Release Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating ",
+              "displayName": "Rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Popularity",
+              "displayName": "Popularity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Poster URL",
+              "displayName": "Poster URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reviwed?",
+              "displayName": "Reviwed?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Review",
+              "displayName": "Customer Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Article",
+              "displayName": "Article",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
             }
-          ]
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
         },
         "options": {}
       },
-      "type": "@n8n/n8n-nodes-langchain.openAi",
-      "typeVersion": 1.8,
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
       "position": [
-        -96,
-        1968
+        2752,
+        2064
       ],
-      "id": "21de2b24-514d-4bf1-944e-5a1a7120b854",
-      "name": "Review Generation3",
+      "id": "828f50d0-c65f-4b2d-9b73-b0d7ca0b8bbb",
+      "name": "Update Movie Article2",
       "credentials": {
-        "openAiApi": {
-          "id": "WTuFB8P3DNjwNZR1",
-          "name": "OpenAi - Alishba"
+        "googleSheetsOAuth2Api": {
+          "id": "h5INhoXgvfSqfxVB",
+          "name": "Google Sheets - Syed Belal"
         }
       }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9,
+              "triggerAtMinute": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        976,
+        576
+      ],
+      "id": "2a266a96-65bb-4897-84d7-4117aaf88d92",
+      "name": "Phase 1 - Watch Providers"
+    },
+    {
+      "parameters": {
+        "content": "# Phase 2: Article Generator",
+        "height": 1136,
+        "width": 2096,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        864,
+        1168
+      ],
+      "typeVersion": 1,
+      "id": "a3b0704f-bb86-4ff3-ae53-b21bcabdf64d",
+      "name": "Sticky Note8"
     }
   ],
   "pinData": {
@@ -2969,6 +5193,23 @@
       }
     ],
     "Phase 1 - Initiator 4.0": [
+      {
+        "json": {
+          "timestamp": "2025-11-04T17:55:41.308+01:00",
+          "Readable date": "November 4th 2025, 5:55:41 pm",
+          "Readable time": "5:55:41 pm",
+          "Day of week": "Tuesday",
+          "Year": "2025",
+          "Month": "November",
+          "Day of month": "04",
+          "Hour": "17",
+          "Minute": "55",
+          "Second": "41",
+          "Timezone": "Europe/Amsterdam (UTC+01:00)"
+        }
+      }
+    ],
+    "Phase 1 - Initiator 2.0": [
       {
         "json": {
           "timestamp": "2025-11-04T17:55:41.308+01:00",
@@ -3019,7 +5260,24 @@
         }
       }
     ],
-    "Phase 1 - Initiator 2.0": [
+    "Phase 2 - Customer Review": [
+      {
+        "json": {
+          "timestamp": "2025-11-06T21:14:33.064+01:00",
+          "Readable date": "November 6th 2025, 9:14:33 pm",
+          "Readable time": "9:14:33 pm",
+          "Day of week": "Thursday",
+          "Year": "2025",
+          "Month": "November",
+          "Day of month": "06",
+          "Hour": "21",
+          "Minute": "14",
+          "Second": "33",
+          "Timezone": "Europe/Amsterdam (UTC+01:00)"
+        }
+      }
+    ],
+    "Phase 1 - Watch Providers": [
       {
         "json": {
           "timestamp": "2025-11-04T17:55:41.308+01:00",
@@ -3036,19 +5294,19 @@
         }
       }
     ],
-    "Sort Initiator": [
+    "Phase 2 - Article": [
       {
         "json": {
-          "timestamp": "2025-11-04T17:55:41.308+01:00",
-          "Readable date": "November 4th 2025, 5:55:41 pm",
-          "Readable time": "5:55:41 pm",
-          "Day of week": "Tuesday",
+          "timestamp": "2025-11-06T21:14:33.064+01:00",
+          "Readable date": "November 6th 2025, 9:14:33 pm",
+          "Readable time": "9:14:33 pm",
+          "Day of week": "Thursday",
           "Year": "2025",
           "Month": "November",
-          "Day of month": "04",
-          "Hour": "17",
-          "Minute": "55",
-          "Second": "41",
+          "Day of month": "06",
+          "Hour": "21",
+          "Minute": "14",
+          "Second": "33",
           "Timezone": "Europe/Amsterdam (UTC+01:00)"
         }
       }
@@ -3798,49 +6056,6 @@
         ]
       ]
     },
-    "Get Data": {
-      "main": [
-        [
-          {
-            "node": "sort by Popularity",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Sort Initiator": {
-      "main": [
-        [
-          {
-            "node": "Get Data",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Phase 2 - Initiator1": {
-      "main": [
-        [
-          {
-            "node": "Read Movie Data1",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Read Movie Data2",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Read Movie Data3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Read Movie Data1": {
       "main": [
         [
@@ -3863,7 +6078,7 @@
         ],
         [
           {
-            "node": "Review Generation1",
+            "node": "setCategory",
             "type": "main",
             "index": 0
           }
@@ -3936,7 +6151,7 @@
         ],
         [
           {
-            "node": "Review Generation2",
+            "node": "setCategory1",
             "type": "main",
             "index": 0
           }
@@ -4009,7 +6224,7 @@
         ],
         [
           {
-            "node": "Review Generation3",
+            "node": "setCategory2",
             "type": "main",
             "index": 0
           }
@@ -4059,17 +6274,670 @@
           }
         ]
       ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Fetch Movie Provider",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Movie Provider": {
+      "main": [
+        [
+          {
+            "node": "Extract Provider's Only",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Provider's Only": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Database3": {
+      "main": [
+        []
+      ]
+    },
+    "Save to Database5": {
+      "main": [
+        []
+      ]
+    },
+    "Fetch Series Provider": {
+      "main": [
+        [
+          {
+            "node": "Extract Provider's Only2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Fetch Series Provider",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Limit4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Limit6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Provider's Only2": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Fetch Movie Provider2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Movie Provider2": {
+      "main": [
+        [
+          {
+            "node": "Extract Provider's Only3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Provider's Only3": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet2": {
+      "main": [
+        [
+          {
+            "node": "Limit5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit4": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit5": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit6": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setCategory": {
+      "main": [
+        [
+          {
+            "node": "Review Generation1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setCategory1": {
+      "main": [
+        [
+          {
+            "node": "Review Generation2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setCategory2": {
+      "main": [
+        [
+          {
+            "node": "Review Generation3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Movie Data4": {
+      "main": [
+        [
+          {
+            "node": "Limit7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Splot in Batches4": {
+      "main": [
+        [
+          {
+            "node": "No Operation4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "setCategory3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit7": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Movie Data5": {
+      "main": [
+        [
+          {
+            "node": "Limit8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Splot in Batches5": {
+      "main": [
+        [
+          {
+            "node": "No Operation4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "setCategory4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit8": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Movie Data6": {
+      "main": [
+        [
+          {
+            "node": "Limit9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Splot in Batches6": {
+      "main": [
+        [
+          {
+            "node": "No Operation4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "setCategory5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit9": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setCategory3": {
+      "main": [
+        [
+          {
+            "node": "Article Generation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setCategory4": {
+      "main": [
+        [
+          {
+            "node": "Review Generation5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setCategory5": {
+      "main": [
+        [
+          {
+            "node": "Review Generation6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Phase 2 - Article": {
+      "main": [
+        [
+          {
+            "node": "Read Movie Data4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Movie Data5",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Movie Data6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Phase 2 - Customer Review": {
+      "main": [
+        [
+          {
+            "node": "Read Movie Data1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Movie Data2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Movie Data3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Article Generation": {
+      "main": [
+        [
+          {
+            "node": "setOutput",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Review Generation5": {
+      "main": [
+        [
+          {
+            "node": "setOutput1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Review Generation6": {
+      "main": [
+        [
+          {
+            "node": "setOutput2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setOutput": {
+      "main": [
+        [
+          {
+            "node": "Update Movie Article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setOutput1": {
+      "main": [
+        [
+          {
+            "node": "Update Movie Article1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setOutput2": {
+      "main": [
+        [
+          {
+            "node": "Update Movie Article2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Movie Article2": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Movie Article1": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Movie Article": {
+      "main": [
+        [
+          {
+            "node": "Splot in Batches4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Phase 1 - Watch Providers": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get row(s) in sheet2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "652a55c3-ec6e-4bc1-b96b-34628dfca5a4",
+  "versionId": "11fe8c2f-77b7-41aa-98d8-2974b1446a12",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "55cbb15b2809b0fe60eec1f3c1c42cebcb3176b9f7015722d8842d983c16c651"
   },
   "id": "QtasNW9YPjF2NJnC",
-  "tags": []
+  "tags": [
+    {
+      "createdAt": "2025-11-06T21:53:28.951Z",
+      "updatedAt": "2025-11-06T21:53:28.951Z",
+      "id": "BqABTT8rhnq6Itth",
+      "name": "Review"
+    }
+  ]
 }
